@@ -19,3 +19,19 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+
+-keep class com.growingio.android.sdk.** {
+    *;
+}
+-dontwarn com.growingio.android.sdk.**
+-keepnames class * extends android.view.View
+-dontwarn android.support.**
+-keep class android.support.** {
+    *;
+}
+
+-keep class com.growingio.android.sdk.collection.GrowingIOInstrumentation {
+    public *;
+    static <fields>;
+}
