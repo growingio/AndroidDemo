@@ -1,4 +1,4 @@
-package com.growingio.androiddemo
+package com.growingio.androiddemo.base
 
 import android.os.Bundle
 import android.view.Menu
@@ -13,6 +13,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.internal.NavigationMenuView
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
+import com.growingio.androiddemo.R
 
 class DrawerActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -22,9 +23,23 @@ class DrawerActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         val toolbar = findViewById<View>(R.id.bar) as BottomAppBar
         setSupportActionBar(toolbar)
 
+        val toFragment = ToFragment()
+        supportFragmentManager.beginTransaction().add(R.id.container,toFragment).commit()
+
         val fab = findViewById<View>(R.id.fab) as FloatingActionButton
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+            Snackbar.make(view, "Replace with your own action\n" +
+                    "Replace with your own action\n" +
+                    "Replace with your own action\n" +
+                    "Replace with your own action\n" +
+                    "Replace with your own action\n" +
+                    "Replace with your own action\n" +
+                    "Replace with your own action\n" +
+                    "Replace with your own action\n" +
+                    "Replace with your own action\n" +
+                    "Replace with your own action\n" +
+                    "Replace with your own action\n" +
+                    "", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }
 //
@@ -79,10 +94,8 @@ class DrawerActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         } else if (id == R.id.nav_manual_track) {
         } else if (id == R.id.nav_hybrid_sdk) {
         } else if (id == R.id.nav_user_story) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_check_list) {
+        } else if (id == R.id.nav_questions) {
 
         }
 

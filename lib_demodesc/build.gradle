@@ -1,0 +1,12 @@
+
+apply plugin: 'java-library'
+
+dependencies {
+    api deps.javapoet
+    compileOnly deps.android.runtime
+}
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"
+
+

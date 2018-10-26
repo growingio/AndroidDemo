@@ -14,10 +14,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name=".MyApplication"
+        android:name=".application.MyApplication"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".DrawerActivity"
+            android:name=".base.DrawerActivity"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

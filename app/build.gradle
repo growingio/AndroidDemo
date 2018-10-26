@@ -20,10 +20,13 @@ android {
         //GrowingIO projectId 和 urlScheme , 请按照安装文档配置，不要使用这里的 projectId 和 urlScheme
         resValue("string", "growingio_project_id", "ad31d8b8a3d8868b")
         resValue("string", "growingio_url_scheme", "growing.82910f317411440f")
-
         // 增加 gioenable 的配置, 开发期间关闭 GIO， 可以使用 InstantRun , 上线前打开
         // 文档说明：https://docs.growingio.com/docs/sdk-integration/android-sdk/android-chang-jian-wen-ti
         resValue("string", "growingio_enable", project.gioenable)
+
+
+        javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
+
     }
     buildTypes {
         release {
@@ -31,18 +34,33 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    android {
+        compileOptions {
+            sourceCompatibility 1.8
+            targetCompatibility 1.8
+        }
+    }
 }
 
 dependencies {
     //GrowingIO SDK
     implementation 'com.growingio.android:vds-android-agent:2.4.5@aar'
+
     // demo dependencies
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-
     implementation 'com.google.android.material:material:1.0.0'
+    api 'com.google.dagger:dagger:2.16'
+    api 'com.google.dagger:dagger-android:2.15'
+    api 'com.google.dagger:dagger-android-support:2.15'
+    api 'com.android.support:multidex:1.0.3'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.15'
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.16'
 
+    //test
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation project(path: ':lib_demodesc')
 }

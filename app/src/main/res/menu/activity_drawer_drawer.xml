@@ -25,16 +25,12 @@
             android:icon="@drawable/ic_5_24px"
             android:title="用户使用场景" />
         <item
-            android:id="@+id/nav_share"
+            android:id="@+id/nav_check_list"
             android:icon="@drawable/ic_6_24px"
             android:title="GrowingIO Check List" />
         <item
-            android:id="@+id/nav_send"
-            android:icon="@drawable/ic_7_24px"
-            android:title="搜索" />
-        <item
             android:id="@+id/nav_questions"
-            android:icon="@drawable/ic_8_24px"
+            android:icon="@drawable/ic_7_24px"
             android:title="常见问题" />
     </group>
 
