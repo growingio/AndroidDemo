@@ -5,7 +5,7 @@ import com.growingio.android.sdk.collection.Configuration
 import com.growingio.android.sdk.collection.GrowingIO
 
 /**
- * classDesc:
+ * classDesc: Application
  */
 class MyApplication : Application() {
 

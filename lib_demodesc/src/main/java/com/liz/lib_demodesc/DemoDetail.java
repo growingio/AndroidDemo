@@ -16,4 +16,11 @@ public @interface DemoDetail {
     
     String demoGroup() default "apiconfig";
     
+    String demoTitle() default "demoTitle";
+    
+    String demoSubTitle() default "demoSubTitle";
+    
+    String demoFeature() default "demoFeature";
+    
+    String demoIcon() default "demoIcon";
 }

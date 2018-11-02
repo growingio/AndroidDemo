@@ -20,18 +20,19 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
-
+# GrowingIO 混淆文件
 -keep class com.growingio.android.sdk.** {
     *;
 }
 -dontwarn com.growingio.android.sdk.**
 -keepnames class * extends android.view.View
 -dontwarn android.support.**
--keep class android.support.** {
+-keep class android.support.**{
     *;
 }
-
 -keep class com.growingio.android.sdk.collection.GrowingIOInstrumentation {
     public *;
     static <fields>;
 }
+-keepnames class * extends android.app.Fragment
+-keepnames class * extends android.support.v4.app.Fragment
