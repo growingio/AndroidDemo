@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_to"
         android:layout_width="match_parent"
@@ -15,7 +16,7 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="474dp">
+        android:layout_height="274dp">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/CollapsingToolbarLayout"

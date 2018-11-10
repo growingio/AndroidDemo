@@ -1,14 +1,19 @@
 package com.growingio.androiddemo.base
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
+import android.view.*
+import android.widget.PopupWindow
+import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import com.google.android.material.internal.NavigationMenuView
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
+import com.google.zxing.integration.android.IntentIntegrator
 import com.growingio.androiddemo.R
 import com.growingio.androiddemo.apiconfig.ShowAPIFragment
 import com.growingio.androiddemo.checklist.CheckListFragment
@@ -31,6 +36,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private val manualTrackFragment = ManualTrackFragment()
     private val hybridSDKPresentationFragment = HybridSDKPresentationFragment()
     private val questionsFragment = QuestionsFragment()
+    private var popWindow: PopupWindow? = null
+    private var screenWidth = 0
+    private var screenHeight = 0
+    private var snackbar: Snackbar? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,11 +49,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         supportFragmentManager.beginTransaction().add(R.id.container, showFeatures).commit()
 
+        snackbar = Snackbar.make(fab, "", Snackbar.LENGTH_INDEFINITE)
+        val layout = snackbar!!.view as Snackbar.SnackbarLayout
+        layout.removeAllViews()
+        val dataView = LayoutInflater.from(this).inflate(R.layout.layout_show_collect_data, null, false)
+        val collectData = dataView.findViewById<View>(R.id.collect_data) as TextView
+        collectData.text = "hhhhh"
+        layout.addView(dataView)
+
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action\n" +
-                    "Replace with your own action\n" +
-                    "", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+
+            if (snackbar!!.isShown) {
+                snackbar!!.dismiss()
+            } else {
+                snackbar!!.show()
+            }
         }
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, bar,
@@ -54,6 +74,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         nav_view.setNavigationItemSelectedListener(this)
         val navMenu = nav_view.getChildAt(0) as NavigationMenuView
         navMenu.isVerticalScrollBarEnabled = false
+    }
+
+
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        screenWidth = windowManager.defaultDisplay.width
+        screenHeight = windowManager.defaultDisplay.height
+        popWindow = PopupWindow(screenWidth, screenHeight - 300)
     }
 
     override fun onBackPressed() {
@@ -71,7 +99,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
-        return if (id == R.id.action_settings) {
+        return if (id == R.id.menu_scan) {
+            val integrator = IntentIntegrator(this)
+            integrator.setOrientationLocked(false)
+            integrator.captureActivity = CustomCaptureActivity::class.java
+            integrator.initiateScan()
             true
         } else super.onOptionsItemSelected(item)
 
@@ -96,5 +128,29 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
+        if (result != null) {
+            if (result.contents != null) {
+                val mClipboardManager = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+                val clipData = ClipData.newPlainText("gio_scan", result.contents)
+                mClipboardManager.primaryClip = clipData
+                startActivity(Intent(this, StandardWebView::class.java).putExtra("url", result.contents))
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data)
+        }
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
+        if (snackbar!!.isShown) {
+            snackbar!!.dismiss()
+            return true
+        } else {
+            return false
+
+        }
     }
 }
