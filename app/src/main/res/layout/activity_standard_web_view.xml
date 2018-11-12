@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/progress_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:progress="20"
@@ -13,7 +13,7 @@
         style="@style/CustomProgressBarHorizontal"
         />
     <WebView
-        android:id="@+id/webview_standard"
+        android:id="@+id/webview"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>
