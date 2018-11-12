@@ -37,4 +37,16 @@
         <item name="android:minHeight">10dip</item>
         <item name="android:maxHeight">20dip</item>
     </style>
+
+    <style name="SwitchButton">
+        <!-- active thumb & track color (30% transparency) -->
+        <item name="colorControlActivated">@color/colorPrimary</item>
+
+        <!-- inactive thumb color -->
+        <item name="colorSwitchThumbNormal">#fff</item>
+
+        <!-- inactive track color (30% transparency) -->
+        <item name="android:colorForeground">#fff</item>
+
+    </style>
 </resources>

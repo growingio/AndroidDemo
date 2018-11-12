@@ -4,11 +4,23 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/btn_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:clickable="true"
+        android:padding="16dp"
+        android:text="翻译"
+        android:textColor="#fff"
+        android:theme="@style/SwitchButton" />
+
     <ScrollView
         android:id="@+id/scroll_view"
-        android:layout_width="match_parent"
         android:layout_height="400dp"
-        android:layout_marginTop="@dimen/layout_margin">
+        android:layout_width="match_parent"
+        android:layout_below="@+id/btn_switch"
+        android:paddingBottom="16dp">
 
         <HorizontalScrollView
             android:layout_width="match_parent"
@@ -17,21 +29,14 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <LinearLayout
-                    android:id="@+id/event_type"
+                <RadioGroup
+                    android:id="@+id/event_container"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:button="@null"
-                        android:text="sdfsdf" />
-                </LinearLayout>
+                    android:orientation="vertical" />
 
                 <LinearLayout
                     android:layout_width="0dp"

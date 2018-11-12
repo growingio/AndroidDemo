@@ -3,12 +3,16 @@ package com.growingio.androiddemo.base
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Intent
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.view.*
-import android.widget.PopupWindow
-import android.widget.TextView
+import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SwitchCompat
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.GravityCompat
 import com.google.android.material.internal.NavigationMenuView
 import com.google.android.material.navigation.NavigationView
@@ -16,6 +20,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.zxing.integration.android.IntentIntegrator
 import com.growingio.androiddemo.R
 import com.growingio.androiddemo.apiconfig.ShowAPIFragment
+import com.growingio.androiddemo.application.MyApplication
 import com.growingio.androiddemo.checklist.CheckListFragment
 import com.growingio.androiddemo.hybridsdk.HybridSDKPresentationFragment
 import com.growingio.androiddemo.manualtrack.ManualTrackFragment
@@ -24,11 +29,13 @@ import com.growingio.androiddemo.showfeature.ShowFeaturesFragment
 import com.growingio.androiddemo.userstory.UserStoryFragment
 import kotlinx.android.synthetic.main.activity_drawer.*
 import kotlinx.android.synthetic.main.app_bar_drawer.*
+import org.json.JSONObject
+
 
 /**
  * classDesc: 首页
  */
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, RadioGroup.OnCheckedChangeListener {
     private val showFeatures = ShowFeaturesFragment()
     private val showAPIFragment = ShowAPIFragment()
     private val checkListFragment = CheckListFragment()
@@ -40,31 +47,41 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var screenWidth = 0
     private var screenHeight = 0
     private var snackbar: Snackbar? = null
+    private var app: MyApplication? = null
+    private var collectData: TextView? = null
+    private var container: RadioGroup? = null
+    private var dataView: View? = null
+    private var btn_switch: SwitchCompat? = null
+    private var isSwitchChecked = false
 
-
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_drawer)
         setSupportActionBar(bar)
+        app = application as MyApplication
 
         supportFragmentManager.beginTransaction().add(R.id.container, showFeatures).commit()
 
-        snackbar = Snackbar.make(fab, "", Snackbar.LENGTH_INDEFINITE)
-        val layout = snackbar!!.view as Snackbar.SnackbarLayout
-        layout.removeAllViews()
-        val dataView = LayoutInflater.from(this).inflate(R.layout.layout_show_collect_data, null, false)
-        val collectData = dataView.findViewById<View>(R.id.collect_data) as TextView
-        collectData.text = "hhhhh"
-        layout.addView(dataView)
 
+        var showSnackbar = false
         fab.setOnClickListener { view ->
-
-            if (snackbar!!.isShown) {
+            if (showSnackbar) {
                 snackbar!!.dismiss()
+                showSnackbar = false
+
+                app!!.listMessage.clear()
+                container!!.removeAllViews()
             } else {
+                initSnackBar()
+
                 snackbar!!.show()
+                showSnackbar = true
+
             }
         }
+
+
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, bar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -74,6 +91,87 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         nav_view.setNavigationItemSelectedListener(this)
         val navMenu = nav_view.getChildAt(0) as NavigationMenuView
         navMenu.isVerticalScrollBarEnabled = false
+    }
+
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
+    fun initSnackBar() {
+        snackbar = Snackbar.make(fab, "", Snackbar.LENGTH_INDEFINITE)
+        val layout = snackbar!!.view as Snackbar.SnackbarLayout
+
+        snackbar!!.view.viewTreeObserver.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
+            override fun onPreDraw(): Boolean {
+                snackbar!!.view.viewTreeObserver.removeOnPreDrawListener(this)
+                (snackbar!!.view.layoutParams as CoordinatorLayout.LayoutParams).behavior = null
+                return true
+            }
+        })
+
+        layout.removeAllViews()
+        dataView = LayoutInflater.from(this).inflate(R.layout.layout_show_collect_data, null, false)
+
+        collectData = dataView!!.findViewById<View>(R.id.collect_data) as TextView
+        btn_switch = dataView!!.findViewById<View>(R.id.btn_switch) as SwitchCompat
+        btn_switch!!.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                isSwitchChecked = true
+                collectData!!.text = translateMessageType(app!!.listMessage[getCheckedPosition(this.container!!)])
+            } else {
+                isSwitchChecked = false
+                collectData!!.text = format(app!!.listMessage[getCheckedPosition(this.container!!)])
+            }
+        }
+
+        container = dataView!!.findViewById<View>(R.id.event_container) as RadioGroup
+        container!!.removeAllViews()
+        var list = app!!.listMessage
+        for ((i, message) in list.withIndex()) {
+
+            collectData!!.text = format(message)
+
+            var eventType = RadioButton(this)
+            val params = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT, 126)
+            params.setMargins(0, 0, 0, 15)
+            eventType.gravity = Gravity.CENTER
+            eventType.layoutParams = params
+            eventType.setPadding(30, 0, 30, 0)
+            eventType.setTextColor(Color.WHITE)
+            eventType.text = message.optString("t")
+            eventType.buttonDrawable = null
+            eventType.background = resources.getDrawable(R.drawable.selector_radio_button)
+            container!!.addView(eventType)
+        }
+        container!!.setOnCheckedChangeListener(this)
+        var lastRadioButton = container!!.getChildAt(list.size - 1) as RadioButton
+        lastRadioButton.isChecked = true
+        layout.addView(dataView)
+
+    }
+
+    private fun translateMessageType(jsonOriginal: JSONObject): String {
+        var newJSONObject = JSONObject()
+        for (key in jsonOriginal.keys()) {
+            if (app!!.meaningMap[key] != null) {
+                newJSONObject.put(app!!.meaningMap[key], jsonOriginal.optString(key))
+            } else {
+                newJSONObject.put(key, jsonOriginal.optString(key))
+            }
+        }
+
+        return format(newJSONObject)
+    }
+
+    override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
+
+        if (isSwitchChecked) {
+            collectData!!.text = translateMessageType(app!!.listMessage[getCheckedPosition(group!!)])
+        } else {
+            collectData!!.text = format(app!!.listMessage[getCheckedPosition(group!!)])
+        }
+    }
+
+    fun getCheckedPosition(radioGroup: RadioGroup): Int {
+        return radioGroup!!.indexOfChild(dataView!!.findViewById(radioGroup!!.checkedRadioButtonId))
     }
 
 
@@ -148,9 +246,44 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (snackbar!!.isShown) {
             snackbar!!.dismiss()
             return true
-        } else {
-            return false
-
         }
+        return super.onKeyDown(keyCode, event)
+    }
+
+    private fun getLevelStr(level: Int): String {
+        val levelStr = StringBuilder()
+        for (levelI in 0 until level) {
+            levelStr.append("\t")
+        }
+        return levelStr.toString()
+    }
+
+    fun format(jsonOriginal: JSONObject): String {
+        var level = 0
+        val jsonForMatStr = StringBuilder()
+        val data = jsonOriginal.toString()
+        for (i in 0 until data.length) {
+            val c = data[i]
+            if (level > 0 && '\n' == jsonForMatStr[jsonForMatStr.length - 1]) {
+                jsonForMatStr.append(getLevelStr(level))
+            }
+            when (c) {
+                '{' -> {
+                    jsonForMatStr.append(c).append("\n")
+                    level++
+                }
+                ',' -> jsonForMatStr.append(c).append("\n")
+                '}' -> {
+                    jsonForMatStr.append("\n")
+                    level--
+                    jsonForMatStr.append(getLevelStr(level))
+                    jsonForMatStr.append(c)
+                }
+                else -> jsonForMatStr.append(c)
+            }
+        }
+
+        return jsonForMatStr.toString()
+
     }
 }
