@@ -9,6 +9,7 @@ buildscript {
         javapoet: 'com.squareup:javapoet:1.10.0'
     ]
     repositories {
+        mavenLocal()
         google()
         jcenter()
     }
@@ -17,13 +18,15 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // GrowingIO plugin
-        classpath 'com.growingio.android:vds-gradle-plugin:autotrack-2.6.0'
+        classpath 'com.growingio.android.test:t-vds-gradle-plugin:autotrack-2.5.0-beta'
+//        classpath 'com.growingio.android:vds-gradle-plugin:autotrack-2.6.0'
 
     }
 }
 
 allprojects {
     repositories {
+        mavenLocal()
         google()
         jcenter()
     }

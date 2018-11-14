@@ -1,64 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/btn_switch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:clickable="true"
-        android:padding="16dp"
-        android:text="翻译"
-        android:textColor="#fff"
-        android:theme="@style/SwitchButton" />
-
-    <ScrollView
-        android:id="@+id/scroll_view"
-        android:layout_height="400dp"
+    <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/btn_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:clickable="true"
+            android:padding="8dp"
+            android:text="翻译"
+            android:textColor="#fff"
+            android:theme="@style/SwitchButton" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/iv_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            app:srcCompat="@drawable/ic_refresh_24px" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="400dp"
         android:layout_below="@+id/btn_switch"
-        android:paddingBottom="16dp">
+        android:orientation="horizontal">
+
+        <ScrollView
+            android:id="@+id/scroll_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingRight="16dp"
+            android:paddingBottom="16dp">
+
+            <RadioGroup
+                android:id="@+id/event_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+        </ScrollView>
 
         <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
-
-            <LinearLayout
+            <ScrollView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_height="match_parent">
 
-                <RadioGroup
-                    android:id="@+id/event_container"
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/collect_data"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical" />
+                    android:textAllCaps="false"
+                    android:textColor="#fff"
+                    android:textSize="14dp" />
+            </ScrollView>
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/collect_data"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:paddingLeft="16dp"
-                        android:textAllCaps="false"
-                        android:textColor="#fff"
-                        android:textSize="14dp" />
-
-
-                </LinearLayout>
-
-            </LinearLayout>
         </HorizontalScrollView>
+    </LinearLayout>
 
-    </ScrollView>
-</RelativeLayout>
+</LinearLayout>

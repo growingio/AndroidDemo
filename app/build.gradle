@@ -47,7 +47,8 @@ android {
 
 dependencies {
     //GrowingIO SDK
-    implementation 'com.growingio.android:vds-android-agent:autotrack-2.6.0@aar'
+    implementation 'com.growingio.android.test:t-vds-android-agent:autotrack-2.5.0-beta@aar'
+//    implementation 'com.growingio.android:vds-android-agent:autotrack-2.6.0@aar'
 
     // demo dependencies
     implementation fileTree(include: ['*.jar'], dir: 'libs')

@@ -64,20 +64,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         supportFragmentManager.beginTransaction().add(R.id.container, showFeatures).commit()
 
 
-        var showSnackbar = false
         fab.setOnClickListener { view ->
-            if (showSnackbar) {
+            if (snackbar != null && snackbar!!.isShown) {
                 snackbar!!.dismiss()
-                showSnackbar = false
-
-                app!!.listMessage.clear()
-                container!!.removeAllViews()
             } else {
                 initSnackBar()
-
                 snackbar!!.show()
-                showSnackbar = true
-
             }
         }
 
@@ -95,6 +87,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
     fun initSnackBar() {
+        var list = app!!.listMessage
+        if (list.isEmpty()) return
+
+        snackbar = null
         snackbar = Snackbar.make(fab, "", Snackbar.LENGTH_INDEFINITE)
         val layout = snackbar!!.view as Snackbar.SnackbarLayout
 
@@ -111,27 +107,35 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         collectData = dataView!!.findViewById<View>(R.id.collect_data) as TextView
         btn_switch = dataView!!.findViewById<View>(R.id.btn_switch) as SwitchCompat
+        var btnClear = dataView!!.findViewById<View>(R.id.iv_clear) as ImageView
+
+        btnClear.setOnClickListener {
+            app!!.listMessage.clear()
+            container!!.removeAllViews()
+            collectData!!.text = ""
+        }
+
         btn_switch!!.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked) {
-                isSwitchChecked = true
-                collectData!!.text = translateMessageType(app!!.listMessage[getCheckedPosition(this.container!!)])
-            } else {
-                isSwitchChecked = false
-                collectData!!.text = format(app!!.listMessage[getCheckedPosition(this.container!!)])
+            if (app!!.listMessage.size > 0) {
+
+                if (isChecked) {
+                    isSwitchChecked = true
+                    collectData!!.text = format(translateMessageType(app!!.listMessage[getCheckedPosition(this.container!!)]))
+                } else {
+                    isSwitchChecked = false
+                    collectData!!.text = format(app!!.listMessage[getCheckedPosition(this.container!!)])
+                }
             }
         }
 
         container = dataView!!.findViewById<View>(R.id.event_container) as RadioGroup
         container!!.removeAllViews()
-        var list = app!!.listMessage
-        for ((i, message) in list.withIndex()) {
 
+        for (message in list) {
             collectData!!.text = format(message)
-
             var eventType = RadioButton(this)
-            val params = LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT, 126)
-            params.setMargins(0, 0, 0, 15)
+            val params = LinearLayout.LayoutParams(280, 135)
+            params.setMargins(0, 0, 0, 10)
             eventType.gravity = Gravity.CENTER
             eventType.layoutParams = params
             eventType.setPadding(30, 0, 30, 0)
@@ -148,30 +152,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     }
 
-    private fun translateMessageType(jsonOriginal: JSONObject): String {
-        var newJSONObject = JSONObject()
-        for (key in jsonOriginal.keys()) {
-            if (app!!.meaningMap[key] != null) {
-                newJSONObject.put(app!!.meaningMap[key], jsonOriginal.optString(key))
-            } else {
-                newJSONObject.put(key, jsonOriginal.optString(key))
-            }
-        }
-
-        return format(newJSONObject)
-    }
-
     override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
 
         if (isSwitchChecked) {
-            collectData!!.text = translateMessageType(app!!.listMessage[getCheckedPosition(group!!)])
+            collectData!!.text = format(translateMessageType(app!!.listMessage[getCheckedPosition(group!!)]))
         } else {
             collectData!!.text = format(app!!.listMessage[getCheckedPosition(group!!)])
         }
     }
 
     fun getCheckedPosition(radioGroup: RadioGroup): Int {
-        return radioGroup!!.indexOfChild(dataView!!.findViewById(radioGroup!!.checkedRadioButtonId))
+        return radioGroup.indexOfChild(dataView!!.findViewById(radioGroup.checkedRadioButtonId))
     }
 
 
@@ -185,9 +176,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START)
+        } else if (snackbar != null && snackbar!!.isShown) {
+            snackbar!!.dismiss()
         } else {
             super.onBackPressed()
         }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -242,20 +236,34 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
-        if (snackbar!!.isShown) {
-            snackbar!!.dismiss()
-            return true
-        }
-        return super.onKeyDown(keyCode, event)
-    }
-
     private fun getLevelStr(level: Int): String {
         val levelStr = StringBuilder()
         for (levelI in 0 until level) {
             levelStr.append("\t")
         }
         return levelStr.toString()
+    }
+
+    private fun translateMessageType(jsonOriginal: JSONObject): JSONObject {
+        var newJSONObject = JSONObject()
+        for (key in jsonOriginal.keys()) {
+
+            //element
+            if (key.equals("e")) {
+                var elementArray = jsonOriginal.optJSONArray("e")
+                for (i in 0 until elementArray.length()) {
+                    translateMessageType(elementArray[i] as JSONObject)
+                }
+            }
+
+            if (app!!.meaningMap[key] != null) {
+                newJSONObject.put(app!!.meaningMap[key], jsonOriginal.optString(key))
+            } else {
+                newJSONObject.put(key, jsonOriginal.optString(key))
+            }
+        }
+
+        return newJSONObject
     }
 
     fun format(jsonOriginal: JSONObject): String {

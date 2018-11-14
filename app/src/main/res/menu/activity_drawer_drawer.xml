@@ -6,6 +6,7 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_show_feature"
+            android:checked="true"
             android:icon="@drawable/ic_1_24px"
             android:title="功能展示" />
         <item
