@@ -1,9 +1,11 @@
 package com.growingio.androiddemo.base
 
+import android.annotation.TargetApi
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Intent
 import android.graphics.Color
+import android.os.AsyncTask
 import android.os.Build
 import android.os.Bundle
 import android.view.*
@@ -29,6 +31,7 @@ import com.growingio.androiddemo.showfeature.ShowFeaturesFragment
 import com.growingio.androiddemo.userstory.UserStoryFragment
 import kotlinx.android.synthetic.main.activity_drawer.*
 import kotlinx.android.synthetic.main.app_bar_drawer.*
+import org.json.JSONArray
 import org.json.JSONObject
 
 
@@ -53,6 +56,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var dataView: View? = null
     private var btn_switch: SwitchCompat? = null
     private var isSwitchChecked = false
+    private var list: MutableList<JSONObject>? = null
+
 
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -87,8 +92,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
     fun initSnackBar() {
-        var list = app!!.listMessage
-        if (list.isEmpty()) return
+        list = app!!.listMessage
+        if (list!!.isEmpty()) return
 
         snackbar = null
         snackbar = Snackbar.make(fab, "", Snackbar.LENGTH_INDEFINITE)
@@ -107,7 +112,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         collectData = dataView!!.findViewById<View>(R.id.collect_data) as TextView
         btn_switch = dataView!!.findViewById<View>(R.id.btn_switch) as SwitchCompat
-        var btnClear = dataView!!.findViewById<View>(R.id.iv_clear) as ImageView
+        val btnClear = dataView!!.findViewById<View>(R.id.iv_clear) as ImageView
+        container = dataView!!.findViewById<View>(R.id.event_container) as RadioGroup
+
 
         btnClear.setOnClickListener {
             app!!.listMessage.clear()
@@ -116,19 +123,31 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
         btn_switch!!.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (app!!.listMessage.size > 0) {
+            if (list!!.size > 0) {
 
                 if (isChecked) {
                     isSwitchChecked = true
-                    collectData!!.text = format(translateMessageType(app!!.listMessage[getCheckedPosition(this.container!!)]))
+                    setMessageTypeRadioButtons(list!!)
+                    collectData!!.text = format(translateMessageType(list!!.last()))
                 } else {
                     isSwitchChecked = false
-                    collectData!!.text = format(app!!.listMessage[getCheckedPosition(this.container!!)])
+                    setMessageTypeRadioButtons(list!!)
+                    collectData!!.text = format(list!!.last())
                 }
             }
         }
 
-        container = dataView!!.findViewById<View>(R.id.event_container) as RadioGroup
+        setMessageTypeRadioButtons(list!!)
+
+
+        layout.addView(dataView)
+
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
+    private fun setMessageTypeRadioButtons(list: MutableList<JSONObject>) {
+
         container!!.removeAllViews()
 
         for (message in list) {
@@ -140,24 +159,26 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             eventType.layoutParams = params
             eventType.setPadding(30, 0, 30, 0)
             eventType.setTextColor(Color.WHITE)
-            eventType.text = message.optString("t")
+            if (isSwitchChecked && app!!.meaningMap[message.optString("t")] != null) {
+                eventType.text = app!!.meaningMap[message.optString("t")]
+            } else {
+                eventType.text = message.optString("t")
+            }
             eventType.buttonDrawable = null
             eventType.background = resources.getDrawable(R.drawable.selector_radio_button)
             container!!.addView(eventType)
         }
-        container!!.setOnCheckedChangeListener(this)
-        var lastRadioButton = container!!.getChildAt(list.size - 1) as RadioButton
-        lastRadioButton.isChecked = true
-        layout.addView(dataView)
 
+        container!!.setOnCheckedChangeListener(this)
+        (container!!.getChildAt(list!!.size - 1) as RadioButton).isChecked = true
     }
 
     override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
 
         if (isSwitchChecked) {
-            collectData!!.text = format(translateMessageType(app!!.listMessage[getCheckedPosition(group!!)]))
+            collectData!!.text = format(translateMessageType(list!![getCheckedPosition(group!!)]))
         } else {
-            collectData!!.text = format(app!!.listMessage[getCheckedPosition(group!!)])
+            collectData!!.text = format(list!![getCheckedPosition(group!!)])
         }
     }
 
@@ -246,21 +267,33 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun translateMessageType(jsonOriginal: JSONObject): JSONObject {
         var newJSONObject = JSONObject()
+        var newElementArray = JSONArray()
         for (key in jsonOriginal.keys()) {
 
             //element
             if (key.equals("e")) {
                 var elementArray = jsonOriginal.optJSONArray("e")
                 for (i in 0 until elementArray.length()) {
-                    translateMessageType(elementArray[i] as JSONObject)
+                    var elementJSONObject = elementArray[i] as JSONObject
+                    var newElementJSONObject = JSONObject()
+                    for (elementKey in elementJSONObject.keys()) {
+                        if (app!!.meaningMap[elementKey] != null) {
+                            newElementJSONObject.put(app!!.meaningMap[elementKey], elementJSONObject.optString(elementKey))
+                        } else {
+                            newElementJSONObject.put(elementKey, elementJSONObject.optString(elementKey))
+                        }
+                    }
+                    newElementArray.put(i, newElementJSONObject)
+                }
+                newJSONObject.put("元素", newElementArray)
+            } else {
+                if (app!!.meaningMap[key] != null) {
+                    newJSONObject.put(app!!.meaningMap[key], jsonOriginal.optString(key))
+                } else {
+                    newJSONObject.put(key, jsonOriginal.optString(key))
                 }
             }
 
-            if (app!!.meaningMap[key] != null) {
-                newJSONObject.put(app!!.meaningMap[key], jsonOriginal.optString(key))
-            } else {
-                newJSONObject.put(key, jsonOriginal.optString(key))
-            }
         }
 
         return newJSONObject

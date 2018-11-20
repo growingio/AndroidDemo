@@ -30,7 +30,7 @@ class MyApplication : Application() {
         meaningMap["s"] = "访问ID"
         meaningMap["tm"] = "事件时间"
         meaningMap["d"] = "包名"
-        meaningMap["u"] = "访问用户id"
+        meaningMap["u"] = "访问用户ID"
         meaningMap["uuid"] = "uuid"
         meaningMap["os"] = "系统"
         meaningMap["osv"] = "系统版本"
@@ -59,6 +59,8 @@ class MyApplication : Application() {
         meaningMap["adrid"] = "安卓Id"
         meaningMap["o"] = "设备方向"
         meaningMap["tl"] = "页面标题"
+        meaningMap["v"] = "元素文本值"
+        meaningMap["idx"] = "元素下标"
 
 
         meaningMap["vst"] = "访问"
