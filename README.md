@@ -1,3 +1,6 @@
+【Demo 开发中，不是成品请勿 clone, 有需求可以提 issue 建议， Thanks。】
+
+
 # GrowingIO Android Demo
 
 ### 1.SDK集成   
