@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.growingio.giodemo">
+	
+	<!-- To access Google+ APIs: -->
+	<uses-permission android:name="android.permission.INTERNET"/>
+	
+	<!-- 非危险权限，不需要运行时请求，Manifest文件中添加即可 -->
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+	<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+	
+	<application
+			android:name=".GIOApplication"
+			android:allowBackup="true"
+			android:icon="@mipmap/ic_launcher"
+			android:label="@string/app_name"
+			android:roundIcon="@mipmap/ic_launcher_round"
+			android:supportsRtl="true"
+			android:theme="@style/AppTheme"
+			tools:ignore="GoogleAppIndexingWarning">
+		<activity android:name=".ProductDetailActivity"/>
+		<activity android:name=".MainActivity">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN"/>
+				
+				<category android:name="android.intent.category.LAUNCHER"/>
+			</intent-filter>
+			
+			<!-- start- GrowingIO Url Scheme , 请粘贴整个 intent-filter 代码块， 一个 Activity下可以有多个 Intent filter， 不要手动合并 -->
+			<intent-filter>
+				<data android:scheme="growing.856a6ce98c31281d"/>
+				
+				<action android:name="android.intent.action.VIEW"/>
+				​
+				<category android:name="android.intent.category.DEFAULT"/>
+				<category android:name="android.intent.category.BROWSABLE"/>
+			</intent-filter>
+			<!-- end- GrowingIO Url Scheme , 请粘贴整个 intent-filter 代码块， 一个 Activity下可以有多个 Intent filter， 不要手动合并 -->
+		
+		</activity>
+		<activity android:name=".SearchProductActivity">
+		</activity>
+		<activity android:name=".CommentsActivity">
+		</activity>
+		<activity android:name=".cart.SubmtOrderActivity">
+		</activity>
+		<activity android:name=".cart.CounterActivity">
+		</activity>
+		<activity android:name=".DealActivity">
+		</activity>
+	</application>
+
+</manifest>

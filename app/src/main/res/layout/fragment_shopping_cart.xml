@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:background="#fff">
+	
+	<TextView
+			style="@style/TextStyleTitle"
+			android:layout_width="match_parent"
+			android:layout_height="70dp"
+			android:gravity="center"
+			android:text="购物车"/>
+	
+	<View
+			android:layout_width="match_parent"
+			android:layout_height="1dp"
+			android:background="#eee"/>
+	
+	<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:padding="30dp">
+		
+		<ImageView
+				android:layout_width="100dp"
+				android:layout_height="100dp"
+				android:src="@drawable/gio_marker_cup"/>
+		
+		<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_marginLeft="22dp"
+				android:gravity="center_vertical"
+				android:orientation="vertical">
+			
+			<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					style="@style/TextStyleTitle"
+					android:text="GIO 马克杯"
+					/>
+			
+			<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					style="@style/TextStyleTitle"
+					android:text="白色"
+					android:textSize="10sp"
+					android:textColor="#2d2d2d"
+					android:layout_marginTop="5dp"
+					android:padding="10dp"
+					android:background="@drawable/shape_text_border"
+					/>
+			
+			<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="5dp"
+					android:text="￥ 39"
+					android:textColor="#2d2d2d"
+					android:textSize="14sp"/>
+		</LinearLayout>
+	
+	</LinearLayout>
+	
+	<View
+			android:layout_width="match_parent"
+			android:layout_height="1dp"
+			android:background="#eee"/>
+	
+	<View
+			android:layout_width="1dp"
+			android:layout_height="0dp"
+			android:layout_weight="1"/>
+	
+	<View
+			android:layout_width="match_parent"
+			android:layout_height="1dp"
+			android:background="#eee"/>
+	
+	<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="70dp"
+			android:gravity="center_vertical"
+			android:orientation="horizontal"
+			android:paddingLeft="30dp"
+			android:paddingRight="30dp">
+		
+		<TextView
+				style="@style/TextStyleTitle"
+				android:text="合计：￥ 39"
+				android:textSize="16sp"/>
+		
+		<View
+				android:layout_width="0dp"
+				android:layout_height="1dp"
+				android:layout_weight="1"/>
+		
+		<Button
+				android:id="@+id/sbmt_order"
+				android:layout_width="150dp"
+				android:layout_height="40dp"
+				android:text="去结算"
+				android:textColor="#fff"
+				style="@style/Base.Widget.AppCompat.Button.Borderless"
+				android:background="@drawable/bg_orange_button"
+				android:textSize="14sp"/>
+	</LinearLayout>
+</LinearLayout>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:background="#fff">
+	
+	<LinearLayout
+			android:id="@+id/search_layout"
+			android:layout_width="match_parent"
+			android:layout_height="70dp"
+			android:orientation="horizontal"
+			android:gravity="center_vertical"
+			android:focusable="true"
+			android:focusableInTouchMode="true"
+			>
+		
+		<ImageView
+				android:id="@+id/back"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="10dp"
+				android:padding="15dp"
+				app:srcCompat="@drawable/ic_arrow_left_black"/>
+		
+		<ImageView
+				android:id="@+id/search"
+				android:layout_width="48dp"
+				android:layout_height="48dp"
+				android:padding="15dp"
+				app:srcCompat="@drawable/ic_search"
+				android:layout_marginLeft="8dp"
+				/>
+		
+		<EditText
+				android:id="@+id/et_search"
+				android:layout_width="0dp"
+				android:layout_weight="1"
+				android:layout_height="match_parent"
+				android:hint="GIO 马克杯"
+				android:textSize="14sp"
+				android:textColor="#969696"
+				android:maxLines="1"
+				android:singleLine="true"
+				android:paddingLeft="18dp"
+				android:imeOptions="actionSearch"
+				android:background="#ffffff"/>
+		
+		<ImageView
+				android:id="@+id/clear"
+				android:layout_width="48dp"
+				android:layout_height="48dp"
+				android:padding="18dp"
+				android:layout_marginRight="20dp"
+				android:layout_marginLeft="0dp"
+				app:srcCompat="@drawable/ic_clear"/>
+	
+	
+	</LinearLayout>
+	
+	<View
+			android:layout_width="match_parent"
+			android:layout_height="1dp"
+			android:background="#eee"/>
+	
+	<TextView
+			android:layout_marginLeft="30dp"
+			android:layout_marginTop="30dp"
+			android:layout_marginBottom="18dp"
+			style="@style/TextStyleTitle"
+			android:text="历史搜索"/>
+	
+	<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingLeft="30dp"
+			android:paddingRight="30dp">
+		
+		<Button
+				android:id="@+id/tv_cup"
+				android:text="GIO 马克杯"
+				style="@style/ButtonStyle"/>
+		
+		<Button
+				android:id="@+id/tv_book"
+				android:layout_toRightOf="@+id/tv_cup"
+				android:layout_marginLeft="30dp"
+				android:text="增长黑客手册"
+				style="@style/ButtonStyle"/>
+		
+		<Button
+				android:id="@+id/tv_hat"
+				android:layout_below="@+id/tv_cup"
+				android:text="GIO 帽衫"
+				android:layout_marginTop="18dp"
+				style="@style/ButtonStyle"/>
+	</RelativeLayout>
+	
+	<TextView
+			android:layout_marginLeft="30dp"
+			android:layout_marginTop="30dp"
+			android:layout_marginBottom="18dp"
+			style="@style/TextStyleTitle"
+			android:text="搜索推荐"/>
+	
+	<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingLeft="30dp"
+			android:paddingRight="30dp">
+		
+		<Button
+				android:id="@+id/tv_cup1"
+				android:text="增长黑客手册"
+				style="@style/ButtonStyle"/>
+		
+		<Button
+				android:id="@+id/tv_book1"
+				android:layout_toRightOf="@+id/tv_cup1"
+				android:layout_marginLeft="30dp"
+				android:text="GIO 马克杯"
+				style="@style/ButtonStyle"/>
+	
+	</RelativeLayout>
+</LinearLayout>

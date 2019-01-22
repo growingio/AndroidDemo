@@ -1,0 +1,12 @@
+<resources>
+	<string name="app_name">GIODemo</string>
+	<string name="title_home">首页</string>
+	<string name="title_category">分类</string>
+	<string name="title_cart">购物车</string>
+	<string name="title_person">我的</string>
+	
+	<!-- TODO: Remove or change this placeholder text -->
+	<string name="hello_blank_fragment">Hello blank fragment</string>
+	<string name="profile_score">我的积分\n5799</string>
+
+</resources>

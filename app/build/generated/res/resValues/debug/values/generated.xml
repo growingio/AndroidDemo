@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Automatically generated file. DO NOT MODIFY -->
+
+    <!-- Values from default config. -->
+    <string name="growingio_project_id" translatable="false">0a1b4118dd954ec3bcc69da5138bdb96</string>
+    <string name="growingio_url_scheme" translatable="false">growing.856a6ce98c31281d</string>
+
+</resources>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="71dp">
+	
+	<ImageView
+			android:id="@+id/back"
+			android:layout_width="60dp"
+			android:layout_height="68dp"
+			android:padding="25dp"
+			app:srcCompat="@drawable/ic_arrow_left_black"
+			android:layout_centerVertical="true"/>
+	
+	<TextView
+			android:id="@+id/head_title"
+			style="@style/TextStyleTitle"
+			android:text="宝贝评价(3)"
+			android:layout_centerInParent="true"/>
+	
+	<View
+			android:layout_width="match_parent"
+			android:layout_height="1dp"
+			android:background="#eee"
+			android:layout_alignParentBottom="true"/>
+</RelativeLayout>

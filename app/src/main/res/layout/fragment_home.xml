@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            android:background="#fff">
+	
+	<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="vertical">
+		
+		<include
+				android:id="@+id/search"
+				layout="@layout/include_search"/>
+		
+		<android.support.v4.view.ViewPager
+				android:id="@+id/banner"
+				android:layout_width="match_parent"
+				android:layout_height="260dp"/>
+		
+		
+		<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal"
+				android:layout_margin="30dp">
+			
+			<LinearLayout
+					android:layout_width="0dp"
+					android:layout_height="match_parent"
+					android:layout_marginRight="8dp"
+					android:layout_weight="1"
+					android:gravity="center"
+					android:orientation="vertical">
+				
+				<ImageView
+						android:layout_width="35dp"
+						android:layout_height="35dp"
+						app:srcCompat="@drawable/ic_category_big"/>
+				
+				<TextView
+						android:layout_marginTop="8dp"
+						style="@style/TextStyleTitle"
+						android:text="商品分类"/>
+			</LinearLayout>
+			
+			<LinearLayout
+					android:layout_width="0dp"
+					android:layout_height="match_parent"
+					android:layout_marginRight="8dp"
+					android:layout_weight="1"
+					android:gravity="center"
+					
+					android:orientation="vertical">
+				
+				<ImageView
+						android:layout_width="35dp"
+						android:layout_height="35dp"
+						app:srcCompat="@drawable/ic_suggest_big"/>
+				
+				<TextView
+						android:text="精品推荐"
+						android:layout_marginTop="8dp"
+						style="@style/TextStyleTitle"/>
+			</LinearLayout>
+			
+			<LinearLayout
+					android:layout_width="0dp"
+					android:layout_height="match_parent"
+					android:layout_marginRight="8dp"
+					android:layout_weight="1"
+					android:gravity="center"
+					android:orientation="vertical">
+				
+				<ImageView
+						android:layout_width="35dp"
+						android:layout_height="35dp"
+						app:srcCompat="@drawable/ic_cart_big"/>
+				
+				<TextView
+						android:layout_marginTop="8dp"
+						style="@style/TextStyleTitle"
+						android:text="购物车"/>
+			</LinearLayout>
+			
+			<LinearLayout
+					android:layout_width="0dp"
+					android:layout_height="match_parent"
+					android:layout_weight="1"
+					android:gravity="center"
+					android:orientation="vertical">
+				
+				<ImageView
+						android:layout_width="35dp"
+						android:layout_height="35dp"
+						app:srcCompat="@drawable/ic_order_big"/>
+				
+				<TextView
+						android:layout_marginTop="8dp"
+						style="@style/TextStyleTitle"
+						android:text="查看订单"/>
+			</LinearLayout>
+		
+		
+		</LinearLayout>
+		
+		<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:background="#eeeeee"/>
+		
+		<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:background="#fff"
+				android:orientation="vertical">
+			
+			<TextView
+					android:layout_marginTop="30dp"
+					style="@style/TextStyleTitle"
+					android:text="限时秒杀"
+					android:layout_marginLeft="30dp"/>
+			
+			<HorizontalScrollView
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:overScrollMode="never"
+					android:scrollbars="none"
+					android:paddingTop="18dp"
+					android:paddingBottom="30dp">
+				
+				<LinearLayout
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:orientation="horizontal"
+						android:paddingLeft="30dp"
+						android:paddingRight="30dp">
+					
+					
+					<ImageView
+							android:id="@+id/limited1"
+							android:layout_width="120dp"
+							android:layout_height="160dp"
+							android:scaleType="fitCenter"
+							android:src="@drawable/limited1"
+							/>
+					
+					<ImageView
+							android:id="@+id/limited2"
+							android:layout_width="120dp"
+							android:layout_height="160dp"
+							android:scaleType="fitCenter"
+							android:src="@drawable/limited2"
+							android:layout_marginLeft="30dp"
+							/>
+					
+					<ImageView
+							android:id="@+id/limited3"
+							android:layout_width="120dp"
+							android:layout_height="160dp"
+							android:scaleType="fitCenter"
+							android:src="@drawable/limited3"
+							android:layout_marginLeft="30dp"
+							/>
+				</LinearLayout>
+			
+			</HorizontalScrollView>
+		
+		</LinearLayout>
+		
+		<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:background="#fff"
+				android:orientation="vertical"
+				android:layout_marginBottom="30dp"
+				>
+			
+			<TextView
+					style="@style/TextStyleTitle"
+					android:text="GIO推荐"
+					android:layout_marginLeft="30dp"/>
+			
+			<ImageView
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="30dp"
+					android:layout_marginRight="30dp"
+					android:src="@drawable/suggested"
+					android:scaleType="fitXY"
+					android:layout_marginTop="18dp"
+					android:layout_gravity="center_horizontal"/>
+		
+		</LinearLayout>
+	
+	</LinearLayout>
+</ScrollView>

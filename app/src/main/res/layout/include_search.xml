@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="match_parent"
+		android:layout_height="70dp"
+		android:orientation="horizontal"
+		android:gravity="center_vertical">
+	
+	<ImageView
+			android:layout_width="18dp"
+			android:layout_height="18dp"
+			app:srcCompat="@drawable/ic_search"
+			android:layout_marginLeft="30dp"
+			android:layout_marginRight="18dp"
+			/>
+	
+	<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="GIO 马克杯"
+			android:textSize="14sp"
+			android:textColor="#969696"/>
+
+</LinearLayout>

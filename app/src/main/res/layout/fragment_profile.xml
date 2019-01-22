@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:background="#fff">
+	
+	<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="150dp"
+			android:orientation="horizontal"
+			android:gravity="center_vertical"
+			android:paddingLeft="30dp"
+			android:paddingRight="30dp">
+		
+		<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="GIO 小颖"
+				android:textSize="22sp"
+				android:textColor="#2d2d2d"
+				/>
+		
+		<View
+				android:layout_width="0dp"
+				android:layout_height="1dp"
+				android:layout_weight="1"/>
+		
+		<ImageView
+				android:layout_width="64dp"
+				android:layout_height="64dp"
+				android:src="@drawable/mine_icon"
+				android:scaleType="fitXY"/>
+	</LinearLayout>
+	
+	<android.support.v7.widget.RecyclerView
+			android:id="@+id/rc_profile"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:overScrollMode="never"
+			android:scrollbars="none"/>
+</LinearLayout>
