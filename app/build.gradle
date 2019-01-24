@@ -29,6 +29,13 @@ android {
     }
 }
 
+
+repositories {
+    flatDir {
+        dirs 'libs'   // aar目录
+    }
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -43,5 +50,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     //GrowingIO 无埋点 SDK
-    implementation 'com.growingio.android:vds-android-agent:autotrack-2.6.7@aar'
+    implementation 'com.growingio.android:vds-android-agent:autotrack-2.6.8@aar'
+
+    //GrowingIO 触达 SDK（未上线所以使用文件包）
+    implementation(name: 'gtouch-0.0.5', ext: 'aar')
 }
