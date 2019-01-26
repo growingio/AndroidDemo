@@ -50,6 +50,8 @@
 		</activity>
 		<activity android:name=".DealActivity">
 		</activity>
+		<activity android:name=".profile.MineOrderActivity">
+		</activity>
 	</application>
 
 </manifest>

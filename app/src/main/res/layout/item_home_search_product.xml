@@ -1,54 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:orientation="vertical">
-
-	<TextView
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:padding="16dp"
-		android:text="找到以下x个商品"
-		android:textColor="#ff523c" />
-
-	<View
-		android:layout_width="match_parent"
-		android:layout_height="1dp"
-		android:background="#eee" />
-
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+	
 	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:gravity="center_vertical"
-		android:orientation="horizontal"
-		android:padding="16dp">
-
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:gravity="center_vertical"
+			android:paddingLeft="30dp"
+			android:paddingTop="18dp"
+			android:paddingBottom="18dp"
+			>
+		
 		<ImageView
-			android:layout_width="100dp"
-			android:layout_height="100dp"
-			android:src="#ff523c" />
-
+				android:id="@+id/goods_img"
+				android:layout_width="100dp"
+				android:layout_height="100dp"/>
+		
 		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:orientation="vertical">
-
+			
 			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="16dp"
-				android:text="gphone 128G" />
-
+					android:id="@+id/goods_name"
+					style="@style/TextStyleTitle"
+					android:layout_marginLeft="16dp"
+					android:text="sdf"/>
+			
 			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginLeft="16dp"
-				android:layout_marginTop="8dp"
-				android:text="￥5799"
-				android:textColor="#ff523c"
-				android:textSize="18sp" />
+					android:id="@+id/goods_price"
+					style="@style/TextStyleTitle"
+					android:layout_marginLeft="16dp"
+					android:layout_marginTop="8dp"
+					android:textSize="13sp"
+					android:text="sdf"/>
+			
+			<!--<Button-->
+					<!--android:id="@+id/btn_delete"-->
+					<!--android:layout_width="50dp"-->
+					<!--android:layout_height="40dp"-->
+					<!--android:background="@drawable/selector_white_button_bg"-->
+					<!--android:textColor="#2d2d2d"-->
+					<!--android:layout_marginLeft="16dp"-->
+					<!--android:layout_marginTop="5dp"-->
+					<!--android:text="删除"/>-->
 		</LinearLayout>
 
 	</LinearLayout>
-
-</LinearLayout>
+	
+	<View
+			android:layout_width="match_parent"
+			android:layout_height="1dp"
+			android:background="#eee"
+			android:layout_alignParentBottom="true"/>
+</RelativeLayout>

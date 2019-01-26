@@ -13,9 +13,8 @@ import com.growingio.giodemo.profile.ProfileFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), HomeFragment.OnFragmentInteractionListener {
     private var menuItem: MenuItem? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -84,5 +83,10 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+
+    override fun onFragmentInteraction(tabIndicator: Int) {
+        viewpager_main.currentItem = tabIndicator
     }
 }

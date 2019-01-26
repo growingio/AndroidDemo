@@ -26,8 +26,7 @@
 		<ImageView
 				android:id="@+id/hot1"
 				android:layout_width="110dp"
-				android:layout_height="120dp"
-				android:src="@drawable/hot1"/>
+				android:layout_height="120dp"/>
 		
 		<View
 				android:layout_width="0dp"
@@ -37,8 +36,7 @@
 		<ImageView
 				android:id="@+id/hot2"
 				android:layout_width="110dp"
-				android:layout_height="120dp"
-				android:src="@drawable/hot1"/>
+				android:layout_height="120dp"/>
 		
 		<View
 				android:layout_width="0dp"

@@ -28,6 +28,7 @@
 				android:layout_margin="30dp">
 			
 			<LinearLayout
+					android:id="@+id/category1"
 					android:layout_width="0dp"
 					android:layout_height="match_parent"
 					android:layout_marginRight="8dp"
@@ -47,6 +48,7 @@
 			</LinearLayout>
 			
 			<LinearLayout
+					android:id="@+id/category2"
 					android:layout_width="0dp"
 					android:layout_height="match_parent"
 					android:layout_marginRight="8dp"
@@ -67,6 +69,7 @@
 			</LinearLayout>
 			
 			<LinearLayout
+					android:id="@+id/category3"
 					android:layout_width="0dp"
 					android:layout_height="match_parent"
 					android:layout_marginRight="8dp"
@@ -86,6 +89,7 @@
 			</LinearLayout>
 			
 			<LinearLayout
+					android:id="@+id/category4"
 					android:layout_width="0dp"
 					android:layout_height="match_parent"
 					android:layout_weight="1"
@@ -184,6 +188,7 @@
 					android:layout_marginLeft="30dp"/>
 			
 			<ImageView
+					android:id="@+id/img_suggested"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:layout_marginLeft="30dp"

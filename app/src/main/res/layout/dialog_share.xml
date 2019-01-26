@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		android:padding="24dp">
+	
+	<TextView
+			style="@style/TextStyleTitle"
+			android:text="分享到："/>
+	
+	<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:layout_marginTop="30dp"
+			android:layout_marginBottom="18dp">
+		
+		<ImageView
+				android:id="@+id/moments"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				app:srcCompat="@drawable/ic_moments"/>
+		
+		<ImageView
+				android:id="@+id/wechat"
+				android:layout_weight="1"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				app:srcCompat="@drawable/ic_wechat"/>
+		
+		<ImageView
+				android:id="@+id/weibo"
+				android:layout_weight="1"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				app:srcCompat="@drawable/ic_weibo"/>
+		
+		<ImageView
+				android:id="@+id/qq"
+				android:layout_weight="1"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				app:srcCompat="@drawable/ic_qq"/>
+	</LinearLayout>
+</LinearLayout>

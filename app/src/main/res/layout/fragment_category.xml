@@ -5,9 +5,12 @@
               android:orientation="vertical"
               android:background="#fff">
 	
-	<include layout="@layout/include_search"/>
+	<include
+			android:id="@+id/search_bar"
+			layout="@layout/include_search"/>
 	
 	<ImageView
+			android:id="@+id/img_banner"
 			android:layout_width="match_parent"
 			android:layout_height="180dp"
 			android:src="@drawable/banner_category"
@@ -17,17 +20,18 @@
 	
 	<LinearLayout
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
+			android:layout_height="match_parent"
 			android:orientation="horizontal">
 		
 		<RadioGroup
+				android:id="@+id/radio_group"
 				android:layout_width="0dp"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
 				android:orientation="vertical">
 			
 			<RadioButton
-					android:id="@+id/suggest"
+					android:id="@+id/radio_btn1"
 					android:layout_width="match_parent"
 					android:layout_height="60dp"
 					android:button="@null"
@@ -37,7 +41,7 @@
 					android:checked="true"/>
 			
 			<RadioButton
-					android:id="@+id/digital_products"
+					android:id="@+id/radio_btn2"
 					android:layout_width="match_parent"
 					android:layout_height="60dp"
 					android:button="@null"
@@ -46,7 +50,7 @@
 					android:background="@drawable/selector_category_checked"/>
 			
 			<RadioButton
-					android:id="@+id/chore"
+					android:id="@+id/radio_btn3"
 					android:layout_width="match_parent"
 					android:layout_height="60dp"
 					android:button="@null"
@@ -55,7 +59,7 @@
 					android:background="@drawable/selector_category_checked"/>
 			
 			<RadioButton
-					android:id="@+id/cloth"
+					android:id="@+id/radio_btn4"
 					android:layout_width="match_parent"
 					android:layout_height="60dp"
 					android:button="@null"

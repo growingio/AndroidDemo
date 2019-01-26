@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#fff"
-            android:overScrollMode="never"
-            android:scrollbars="none">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+	
+	<ScrollView
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:background="#fff"
+			android:overScrollMode="never"
+			android:scrollbars="none">
 	
 	<LinearLayout
 			android:layout_width="match_parent"
@@ -20,7 +23,7 @@
 				android:gravity="center_vertical">
 			
 			<ImageView
-					android:id="@+id/back"
+					android:id="@+id/img_back"
 					android:layout_width="60dp"
 					android:layout_height="68dp"
 					android:background="#fff"
@@ -53,6 +56,7 @@
 				android:background="#eee"/>
 		
 		<ImageView
+				android:id="@+id/img_product"
 				android:layout_width="match_parent"
 				android:layout_height="440dp"
 				android:src="@drawable/pd_cup"
@@ -60,17 +64,19 @@
 		
 		<android.support.constraint.ConstraintLayout
 				android:layout_width="match_parent"
-				android:layout_height="120dp"
+				android:layout_height="wrap_content"
+				android:paddingBottom="18dp"
 				>
 			
 			<TextView
-					android:id="@+id/textView2"
+					android:id="@+id/product_name"
 					style="@style/TextStyleTitle"
 					android:text="GIO 马克杯"
 					android:paddingLeft="30dp"
 					android:paddingTop="18dp"/>
 			
 			<TextView
+					android:id="@+id/tv_price"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:layout_marginTop="18dp"
@@ -84,39 +90,41 @@
 					app:layout_constraintTop_toTopOf="parent"/>
 			
 			<TextView
-					android:id="@+id/textView3"
+					android:id="@+id/tv_desc"
 					style="@style/TextStyleTitleGray"
+					android:layout_width="match_parent"
 					android:layout_marginTop="5dp"
-					android:text="办公用品马克杯白色"
+					android:text="《产品经理数据分析手册》 总结了 GrowingIO 创业以来的产品经理数据分析精华，包括产品经理数据分析 4 大案例、5 大能力、6 本书籍、7 种工具、8 大方法。"
 					android:layout_marginLeft="30dp"
+					android:layout_marginRight="30dp"
 					app:layout_constraintStart_toStartOf="parent"
-					app:layout_constraintTop_toBottomOf="@+id/textView2"/>
+					app:layout_constraintTop_toBottomOf="@+id/product_name"/>
 			
 			
 			<TextView
-					android:id="@+id/textView4"
+					android:id="@+id/desc"
 					style="@style/TextStyleTitleGray"
 					android:layout_marginStart="28dp"
-					android:layout_marginLeft="28dp"
 					android:text="送至"
 					app:layout_constraintBottom_toBottomOf="parent"
 					app:layout_constraintStart_toStartOf="parent"
-					app:layout_constraintTop_toBottomOf="@+id/textView3"
-					app:layout_constraintVertical_bias="0.529"/>
+					app:layout_constraintTop_toBottomOf="@+id/tv_desc"
+					app:layout_constraintVertical_bias="0.058"
+					android:layout_marginTop="4dp"/>
 			
 			<TextView
 					android:id="@+id/location"
 					style="@style/TextStyleTitle"
-					android:layout_marginLeft="8dp"
 					android:text="北京市 朝阳区"
 					android:textSize="13sp"
 					android:drawableLeft="@drawable/ic_location"
 					android:drawablePadding="3dp"
 					app:layout_constraintBottom_toBottomOf="parent"
-					app:layout_constraintStart_toEndOf="@+id/textView4"
-					app:layout_constraintTop_toBottomOf="@+id/textView3"
+					app:layout_constraintStart_toEndOf="@+id/desc"
+					app:layout_constraintTop_toBottomOf="@+id/tv_desc"
 					android:layout_marginStart="8dp"
-					android:layout_height="wrap_content"/>
+					android:layout_height="wrap_content"
+					android:layout_marginTop="4dp"/>
 		
 		</android.support.constraint.ConstraintLayout>
 		
@@ -193,6 +201,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:padding="30dp"
+				android:layout_marginBottom="100dp"
 				>
 			
 			<TextView
@@ -260,4 +269,34 @@
 		</RelativeLayout>
 	
 	</LinearLayout>
-</ScrollView>
+	
+	
+	</ScrollView>
+	
+	<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:layout_alignParentBottom="true"
+			android:padding="5dp">
+		
+		<Button
+				android:id="@+id/btn_add_to_cart"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:text="加入购物车"
+				android:textColor="#2d2d2d"
+				android:background="@drawable/selector_white_button_bg"/>
+		
+		<Button
+				android:id="@+id/btn_cash_now"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:text="立即购买"
+				android:textColor="#fff"
+				android:layout_marginLeft="5dp"
+				android:background="@drawable/selector_button_bg"/>
+	</LinearLayout>
+</RelativeLayout>

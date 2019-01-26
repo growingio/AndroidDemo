@@ -65,63 +65,102 @@
 			android:layout_height="1dp"
 			android:background="#eee"/>
 	
-	<TextView
-			android:layout_marginLeft="30dp"
-			android:layout_marginTop="30dp"
-			android:layout_marginBottom="18dp"
-			style="@style/TextStyleTitle"
-			android:text="历史搜索"/>
-	
-	<RelativeLayout
+	<LinearLayout
+			android:id="@+id/ll_history_search"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:paddingLeft="30dp"
-			android:paddingRight="30dp">
+			android:layout_height="match_parent"
+			android:orientation="vertical">
 		
-		<Button
-				android:id="@+id/tv_cup"
-				android:text="GIO 马克杯"
-				style="@style/ButtonStyle"/>
 		
-		<Button
-				android:id="@+id/tv_book"
-				android:layout_toRightOf="@+id/tv_cup"
+		<TextView
 				android:layout_marginLeft="30dp"
-				android:text="增长黑客手册"
-				style="@style/ButtonStyle"/>
+				android:layout_marginTop="30dp"
+				android:layout_marginBottom="18dp"
+				style="@style/TextStyleTitle"
+				android:text="历史搜索"/>
 		
-		<Button
-				android:id="@+id/tv_hat"
-				android:layout_below="@+id/tv_cup"
-				android:text="GIO 帽衫"
-				android:layout_marginTop="18dp"
-				style="@style/ButtonStyle"/>
-	</RelativeLayout>
+		<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:paddingLeft="30dp"
+				android:paddingRight="30dp">
+			
+			<Button
+					android:id="@+id/btn_marker"
+					android:text="GIO 马克杯"
+					style="@style/ButtonStyle"/>
+			
+			<Button
+					android:id="@+id/btn_book"
+					android:layout_toRightOf="@+id/btn_marker"
+					android:layout_marginLeft="30dp"
+					android:text="增长黑客手册"
+					style="@style/ButtonStyle"/>
+			
+			<Button
+					android:id="@+id/btn_shirt"
+					android:layout_below="@+id/btn_marker"
+					android:text="GIO 帽衫"
+					android:layout_marginTop="18dp"
+					style="@style/ButtonStyle"/>
+		</RelativeLayout>
+		
+		<TextView
+				android:layout_marginLeft="30dp"
+				android:layout_marginTop="30dp"
+				android:layout_marginBottom="18dp"
+				style="@style/TextStyleTitle"
+				android:text="搜索推荐"/>
+		
+		<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:paddingLeft="30dp"
+				android:paddingRight="30dp">
+			
+			<Button
+					android:id="@+id/btn_hacker_book"
+					android:text="增长黑客手册"
+					style="@style/ButtonStyle"/>
+			
+			<Button
+					android:id="@+id/btn_cup"
+					android:layout_toRightOf="@+id/btn_hacker_book"
+					android:layout_marginLeft="30dp"
+					android:text="GIO 马克杯"
+					style="@style/ButtonStyle"/>
+		
+		</RelativeLayout>
+	</LinearLayout>
 	
-	<TextView
-			android:layout_marginLeft="30dp"
-			android:layout_marginTop="30dp"
-			android:layout_marginBottom="18dp"
-			style="@style/TextStyleTitle"
-			android:text="搜索推荐"/>
-	
-	<RelativeLayout
+	<LinearLayout
+			android:visibility="gone"
+			android:id="@+id/ll_goods_result"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:paddingLeft="30dp"
-			android:paddingRight="30dp">
+			android:layout_height="match_parent"
+			android:orientation="vertical">
 		
-		<Button
-				android:id="@+id/tv_cup1"
-				android:text="增长黑客手册"
-				style="@style/ButtonStyle"/>
+		<TextView
+				android:id="@+id/tv_search_result"
+				style="@style/TextStyleTitle"
+				android:paddingLeft="30dp"
+				android:paddingTop="18dp"
+				android:text="找到以下"/>
 		
-		<Button
-				android:id="@+id/tv_book1"
-				android:layout_toRightOf="@+id/tv_cup1"
-				android:layout_marginLeft="30dp"
-				android:text="GIO 马克杯"
-				style="@style/ButtonStyle"/>
-	
-	</RelativeLayout>
+		<ImageView
+				android:visibility="gone"
+				android:id="@+id/img_not_found"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				app:srcCompat="@drawable/ic_search_failure"
+				android:layout_gravity="center_horizontal"
+				android:layout_marginTop="80dp"/>
+		
+		<android.support.v7.widget.RecyclerView
+				android:overScrollMode="never"
+				android:id="@+id/rc_search_goods"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"/>
+	</LinearLayout>
+
 </LinearLayout>

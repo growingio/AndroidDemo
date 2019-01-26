@@ -1,6 +1,7 @@
 package com.growingio.giodemo.profile
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -8,6 +9,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import com.growingio.giodemo.R
 
@@ -52,6 +55,10 @@ class MyProfileAdapter(context: Context) : RecyclerView.Adapter<MyViewHolder>() 
     override fun onBindViewHolder(holder: MyViewHolder, p1: Int) {
         holder.title.text = profileInfo[p1].title
         holder.content.text = profileInfo[p1].content
+        if (p1 == 2) {
+            holder.arrow.visibility = View.VISIBLE
+            holder.root.setOnClickListener { context.startActivity(Intent(context, MineOrderActivity::class.java)) }
+        }
     }
 
 }
@@ -59,6 +66,8 @@ class MyProfileAdapter(context: Context) : RecyclerView.Adapter<MyViewHolder>() 
 class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val title = itemView.findViewById<View>(R.id.tv_title) as TextView
     val content = itemView.findViewById<View>(R.id.tv_content) as TextView
+    val arrow = itemView.findViewById<View>(R.id.img_arrow_right) as ImageView
+    val root = itemView.findViewById<View>(R.id.root) as RelativeLayout
 
 }
 
