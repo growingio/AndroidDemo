@@ -1,88 +1,42 @@
 package com.growingio.giodemo.profile
 
-import android.content.Context
-import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import com.growingio.giodemo.R
+import com.growingio.giodemo.gioShirt
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Activities that contain this fragment must implement the
- * [DeliveringFragment.OnFragmentInteractionListener] interface
- * to handle interaction events.
- * Use the [DeliveringFragment.newInstance] factory method to
- * create an instance of this fragment.
- *
- */
 class DeliveringFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-    private var listener: OnFragmentInteractionListener? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_delivering, container, false)
-    }
+        val view = inflater.inflate(R.layout.fragment_delivering, container, false)
+        val num = view.findViewById<View>(R.id.tv_pd_num) as TextView
+        val name = view.findViewById<View>(R.id.tv_pd_name) as TextView
+        val price = view.findViewById<View>(R.id.tv_pd_price) as TextView
+        val img = view.findViewById<View>(R.id.img_product_icon) as ImageView
+        val btnStatus = view.findViewById<View>(R.id.btn_status) as Button
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            btnStatus.background = activity!!.getDrawable(R.drawable.bg_yellow)
+            btnStatus.text = "配送中"
+        }
+        img.setImageResource(gioShirt.categoryImg)
+        name.text = gioShirt.name
+        price.text = String.format("￥ ${gioShirt.price}")
+        num.text = String.format("订单编号：${gioShirt.orderNumber}")
 
-    // TODO: Rename method, update argument and hook method into UI event
-    fun onButtonPressed(uri: Uri) {
-        listener?.onFragmentInteraction(uri)
-    }
-
-
-    override fun onDetach() {
-        super.onDetach()
-        listener = null
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     *
-     *
-     * See the Android Training lesson [Communicating with Other Fragments]
-     * (http://developer.android.com/training/basics/fragments/communicating.html)
-     * for more information.
-     */
-    interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        fun onFragmentInteraction(uri: Uri)
+        return view
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment DeliveringFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance() = DeliveringFragment()
     }

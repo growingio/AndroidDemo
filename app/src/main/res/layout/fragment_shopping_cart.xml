@@ -56,7 +56,7 @@
 		
 		<TextView
 				style="@style/TextStyleTitle"
-				android:text="合计：￥ 39"
+				android:text="合计：￥ 0"
 				android:textSize="16sp"/>
 		
 		<View
@@ -65,11 +65,12 @@
 				android:layout_weight="1"/>
 		
 		<Button
-				android:id="@+id/sbmt_order"
+				android:id="@+id/btn_sbmt_order"
 				android:layout_width="150dp"
 				android:layout_height="40dp"
 				android:text="去结算"
 				android:textColor="#fff"
+				android:enabled="false"
 				style="@style/Base.Widget.AppCompat.Button.Borderless"
 				android:background="@drawable/bg_orange_button"
 				android:textSize="14sp"/>

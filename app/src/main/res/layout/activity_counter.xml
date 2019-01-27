@@ -1,95 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-		xmlns:android="http://schemas.android.com/apk/res/android"
-		xmlns:tools="http://schemas.android.com/tools"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:orientation="vertical"
-		tools:context=".cart.CounterActivity">
-	
-	<include layout="@layout/include_page_title"/>
-	
-	<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="70dp"
-			android:orientation="horizontal"
-			android:layout_marginLeft="30dp"
-			android:layout_marginRight="30dp"
-			android:gravity="center_vertical">
-		
-		<TextView
-				style="@style/TextStyleTitle"
-				android:text="订单金额"/>
-		
-		<View
-				android:layout_width="0dp"
-				android:layout_height="1dp"
-				android:layout_weight="1"/>
-		
-		<TextView
-				style="@style/TextStyleTitle"
-				android:text="￥ 49"
-				android:textSize="14sp"/>
-	
-	</LinearLayout>
-	
-	<View
-			android:layout_width="match_parent"
-			android:layout_height="1dp"
-			android:background="#eee"/>
-	
-	<TextView
-			android:layout_width="match_parent"
-			android:layout_height="70dp"
-			android:gravity="center_vertical"
-			android:paddingLeft="30dp"
-			style="@style/TextStyleTitle"
-			android:text="GIO 支付"
-			android:drawableRight="@drawable/arrow_black_right"
-			android:paddingRight="30dp"/>
-	
-	<View
-			android:layout_width="match_parent"
-			android:layout_height="1dp"
-			android:background="#eee"/>
-	
-	<View
-			android:layout_width="1dp"
-			android:layout_height="0dp"
-			android:layout_weight="1"/>
-	
-	<RelativeLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="vertical"
-			android:background="#fff"
-			android:layout_alignParentBottom="true">
-		
-		<View
-				android:layout_width="match_parent"
-				android:layout_height="1dp"
-				android:background="#eee"/>
-		
-		<TextView
-				style="@style/TextStyleTitle"
-				android:layout_centerVertical="true"
-				android:text="合计：￥49"
-				android:layout_marginLeft="30dp"/>
-		
-		<Button
-				android:id="@+id/submit_order"
-				android:layout_marginTop="12dp"
-				android:layout_marginBottom="12dp"
-				android:layout_width="120dp"
-				android:layout_height="40dp"
-				android:layout_centerVertical="true"
-				android:layout_alignParentRight="true"
-				android:text="确认支付"
-				android:layout_marginRight="30dp"
-				style="@style/Base.Widget.AppCompat.Button.Borderless"
-				android:background="@drawable/selector_button_bg"
-				android:textColor="#fff"/>
-	
-	</RelativeLayout>
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".cart.CounterActivity">
+
+    <include layout="@layout/include_page_title"/>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:orientation="horizontal"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:gravity="center_vertical">
+
+        <TextView
+                style="@style/TextStyleTitle"
+                android:text="订单金额"/>
+
+        <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"/>
+
+        <TextView
+                android:id="@+id/tv_bill"
+                style="@style/TextStyleTitle"
+                android:text="￥ 49"
+                android:textSize="14sp"/>
+
+    </LinearLayout>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#eee"/>
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="30dp"
+            style="@style/TextStyleTitle"
+            android:text="GIO 支付"
+            android:drawableRight="@drawable/arrow_black_right"
+            android:paddingRight="30dp"/>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#eee"/>
+
+    <View
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#fff"
+            android:layout_alignParentBottom="true">
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#eee"/>
+
+        <TextView
+                android:id="@+id/tv_pay_bill"
+                style="@style/TextStyleTitle"
+                android:layout_centerVertical="true"
+                android:text="合计：￥49"
+                android:layout_marginLeft="30dp"/>
+
+        <Button
+                android:id="@+id/submit_order"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:text="确认支付"
+                android:layout_marginRight="30dp"
+                style="@style/Base.Widget.AppCompat.Button.Borderless"
+                android:background="@drawable/selector_button_bg"
+                android:textColor="#fff"/>
+
+    </RelativeLayout>
 
 </LinearLayout>
