@@ -19,35 +19,30 @@
 				android:layout_height="100dp"/>
 		
 		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="vertical">
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical">
+			
+			<TextView
+					android:id="@+id/order_id"
+					style="@style/TextStyleTitle"
+					android:layout_marginLeft="16dp"
+					android:textColor="#969696"
+					android:visibility="gone"/>
 			
 			<TextView
 					android:id="@+id/goods_name"
 					style="@style/TextStyleTitle"
-					android:layout_marginLeft="16dp"
-					android:text="sdf"/>
+					android:layout_marginLeft="16dp"/>
 			
 			<TextView
 					android:id="@+id/goods_price"
 					style="@style/TextStyleTitle"
 					android:layout_marginLeft="16dp"
 					android:layout_marginTop="8dp"
-					android:textSize="13sp"
-					android:text="sdf"/>
-			
-			<!--<Button-->
-					<!--android:id="@+id/btn_delete"-->
-					<!--android:layout_width="50dp"-->
-					<!--android:layout_height="40dp"-->
-					<!--android:background="@drawable/selector_white_button_bg"-->
-					<!--android:textColor="#2d2d2d"-->
-					<!--android:layout_marginLeft="16dp"-->
-					<!--android:layout_marginTop="5dp"-->
-					<!--android:text="删除"/>-->
+					android:textSize="13sp"/>
 		</LinearLayout>
-
+	
 	</LinearLayout>
 	
 	<View

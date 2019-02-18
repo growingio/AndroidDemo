@@ -18,8 +18,9 @@ android {
         vectorDrawables.useSupportLibrary = true
 
 
-        resValue("string", "growingio_project_id", "0a1b4118dd954ec3bcc69da5138bdb96")
-        resValue("string", "growingio_url_scheme", "growing.856a6ce98c31281d")
+        resValue("string", "growingio_project_id", "97fd6815651f25fb")
+        resValue("string", "growingio_url_scheme", "growing.9b4f02dc593cf331")
+
     }
     buildTypes {
         release {

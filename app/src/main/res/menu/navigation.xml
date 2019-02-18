@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
+	
 	<item
-		android:id="@+id/home"
-		android:icon="@drawable/ic_home"
-		android:title="@string/title_home" />
-
+			android:id="@+id/home"
+			android:icon="@drawable/ic_home"
+			android:title="@string/title_home"/>
+	
 	<item
-		android:id="@+id/category"
-		android:icon="@drawable/ic_category"
-		android:title="@string/title_category" />
-
+			android:id="@+id/category"
+			android:icon="@drawable/ic_category"
+			android:title="@string/title_category"/>
+	
 	<item
-		android:id="@+id/cart"
-		android:icon="@drawable/ic_cart"
-		android:title="@string/title_cart" />
-
+			android:id="@+id/cart"
+			android:icon="@drawable/ic_cart"
+			android:title="@string/title_cart"/>
+	
 	<item
-		android:id="@+id/profile"
-		android:icon="@drawable/ic_profile"
-		android:title="@string/title_person" />
+			android:id="@+id/profile"
+			android:icon="@drawable/ic_profile"
+			android:title="@string/title_person"/>
 
 </menu>

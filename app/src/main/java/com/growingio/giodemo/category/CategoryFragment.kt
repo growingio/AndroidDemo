@@ -12,15 +12,17 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RadioGroup
 import android.widget.TextView
+import com.growingio.android.sdk.collection.GrowingIO
 import com.growingio.giodemo.*
+import org.json.JSONObject
 
 class CategoryFragment : Fragment(), View.OnClickListener {
 
     val productKey = "product"
 
-    companion object {
-        fun newInstance() = CategoryFragment()
+    object CategoryFragment
 
+    companion object {
         // 为你推荐
         val suggestions = listOf(
             CategoryItem(listOf(gioCup, theHandBookOfGrowthHacker), "热门推荐"),
@@ -54,10 +56,38 @@ class CategoryFragment : Fragment(), View.OnClickListener {
         val radioGroup = view.findViewById<View>(R.id.radio_group) as RadioGroup
         radioGroup.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
-                R.id.radio_btn1 -> productRecyclerView.adapter = MyProductAdapter(activity as Context, suggestions)
-                R.id.radio_btn2 -> productRecyclerView.adapter = MyProductAdapter(activity as Context, eBooks)
-                R.id.radio_btn3 -> productRecyclerView.adapter = MyProductAdapter(activity as Context, supplies)
-                R.id.radio_btn4 -> productRecyclerView.adapter = MyProductAdapter(activity as Context, cloth)
+                R.id.radio_btn1 -> {
+                    GrowingIO.getInstance()
+                        .setPageVariable(activity!!, JSONObject().put("productListType_pvar", "为您推荐"))
+                    productRecyclerView.adapter = MyProductAdapter(activity as Context, suggestions)
+
+                    //在商品分类页面浏览的是“为您推荐”、“电子产品”、“生活用品”、“服装”
+                    GrowingIO.getInstance()
+                        .setPageVariable(this, JSONObject().put("productListType_pvar", "为您推荐"))
+                }
+                R.id.radio_btn2 -> {
+                    GrowingIO.getInstance().setPageVariable(activity!!, JSONObject().put("productListType_pvar", "电子书"))
+                    productRecyclerView.adapter = MyProductAdapter(activity as Context, eBooks)
+
+                    GrowingIO.getInstance()
+                        .setPageVariable(this, JSONObject().put("productListType_pvar", "电子书"))
+                }
+                R.id.radio_btn3 -> {
+                    GrowingIO.getInstance()
+                        .setPageVariable(activity!!, JSONObject().put("productListType_pvar", "生活用品"))
+                    productRecyclerView.adapter = MyProductAdapter(activity as Context, supplies)
+
+                    GrowingIO.getInstance()
+                        .setPageVariable(this, JSONObject().put("productListType_pvar", "生活用品"))
+                }
+                R.id.radio_btn4 -> {
+                    GrowingIO.getInstance()
+                        .setPageVariable(activity!!, JSONObject().put("productListType_pvar", "服装"))
+                    productRecyclerView.adapter = MyProductAdapter(activity as Context, cloth)
+
+                    GrowingIO.getInstance()
+                        .setPageVariable(this, JSONObject().put("productListType_pvar", "服装"))
+                }
             }
 
         }
@@ -100,6 +130,15 @@ class MyProductAdapter(context: Context, list: List<CategoryItem>) : RecyclerVie
         holder.title.text = list[p1].category
         holder.itemLeft.setImageResource(list[p1].products[0].categoryImg)
         holder.itemLeft.setOnClickListener {
+
+            //商品分类listing页面的商品点击
+            GrowingIO.getInstance()
+                .track(
+                    "listingPageGoodsClick",
+                    JSONObject()
+                        .put(GioProductId, list[p1].products[0].id)
+                        .put(GioProductName, list[p1].products[0].name)
+                )
             context.startActivity(
                 Intent(context, ProductDetailActivity::class.java).putExtra(
                     "product",
@@ -110,6 +149,16 @@ class MyProductAdapter(context: Context, list: List<CategoryItem>) : RecyclerVie
         if (list[p1].products.size > 1) {
             holder.itemRight.setImageResource(list[p1].products[1].categoryImg)
             holder.itemRight.setOnClickListener {
+
+                //商品分类listing页面的商品点击
+                GrowingIO.getInstance()
+                    .track(
+                        "listingPageGoodsClick",
+                        JSONObject()
+                            .put(GioProductId, list[p1].products[0].id)
+                            .put(GioProductName, list[p1].products[0].name)
+                    )
+
                 context.startActivity(
                     Intent(context, ProductDetailActivity::class.java).putExtra(
                         "product",

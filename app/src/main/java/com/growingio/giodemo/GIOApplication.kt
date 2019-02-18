@@ -41,7 +41,10 @@ class GIOApplication : Application() {
                         errorCode: Int,
                         description: String?
                     ) {
-                        Log.e(TAG, "onLoadFailed: eventId = $eventId, eventType = $eventType， description = $description")
+                        Log.e(
+                            TAG,
+                            "onLoadFailed: eventId = $eventId, eventType = $eventType， description = $description"
+                        )
                     }
 
                     override fun onCancel(eventId: String?, eventType: String?) {
@@ -63,6 +66,9 @@ class GIOApplication : Application() {
 
                 })
         )
+
+        //会员等级
+        GrowingIO.getInstance().setPeopleVariable("vipLevel", 1)
 
     }
 }

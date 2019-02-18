@@ -18,10 +18,7 @@ class ProfileFragment : Fragment() {
 
     private var recyclerView: RecyclerView? = null
 
-    companion object {
-        @JvmStatic
-        fun newInstance() = ProfileFragment()
-    }
+    object ProfileFragment
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
@@ -57,7 +54,7 @@ class MyProfileAdapter(context: Context) : RecyclerView.Adapter<MyViewHolder>() 
         holder.content.text = profileInfo[p1].content
         if (p1 == 2) {
             holder.arrow.visibility = View.VISIBLE
-            holder.root.setOnClickListener { context.startActivity(Intent(context, MineOrderActivity::class.java)) }
+            holder.root.setOnClickListener { context.startActivity(Intent(context, MyOrderActivity::class.java)) }
         }
     }
 

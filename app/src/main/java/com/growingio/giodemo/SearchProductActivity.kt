@@ -14,20 +14,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import com.growingio.android.sdk.collection.GrowingIO
 import com.growingio.giodemo.cart.defaultPrefs
 import com.growingio.giodemo.cart.set
 import kotlinx.android.synthetic.main.activity_search_product.*
+import org.json.JSONObject
 
 
 class SearchProductActivity : AppCompatActivity(), View.OnClickListener {
 
     private var mInputMethodManager: InputMethodManager? = null
     private val context = this
-    private val productKey = "product"
 
     @SuppressLint("NewApi")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,14 +64,29 @@ class SearchProductActivity : AppCompatActivity(), View.OnClickListener {
                     if (result.isNotEmpty()) {
                         img_not_found.visibility = View.GONE
                         rc_search_goods.visibility = View.VISIBLE
-                        tv_search_result.text = "找到以下 " + result.size + " 个商品"
-                        rc_search_goods.adapter = MyGoodsAdapter(context, result, false)
+                        tv_search_result.text = "找到以下 ${result.size} 个商品"
+                        rc_search_goods.adapter = MyGoodsAdapter(context, result, s.toString(), null)
                         rc_search_goods.layoutManager = LinearLayoutManager(context)
+
+                        //用户在搜索栏发起商品搜索
+                        GrowingIO.getInstance().track("searchGoods", JSONObject().put(GioSearchKeyWord, s))
+
+                        //用户搜索后返回结果是有搜索结果
+                        GrowingIO.getInstance().track("searchResultView", JSONObject().put(GioSearchKeyWord, s))
+
                     } else {
                         img_not_found.visibility = View.VISIBLE
                         tv_search_result.text = "抱歉，未能找到您搜索的商品"
                         rc_search_goods.visibility = View.GONE
+
+                        //用户在搜索栏发起商品搜索
+                        GrowingIO.getInstance().track("searchGoods", JSONObject().put(GioSearchKeyWord, s))
+
+                        //用户搜索后返回结果是无结果
+                        GrowingIO.getInstance().track("searchNoResultView", JSONObject().put(GioSearchKeyWord, s))
+
                     }
+
                 } else {
                     ll_goods_result.visibility = View.GONE
                     ll_history_search.visibility = View.VISIBLE
@@ -119,12 +134,14 @@ class SearchProductActivity : AppCompatActivity(), View.OnClickListener {
 }
 
 
-class MyGoodsAdapter(context: Context, goods: List<Product>, isCartPage: Boolean) :
-    RecyclerView.Adapter<MyGoodsViewHolder>() {
-
+class MyGoodsAdapter(
+    context: Context,
+    goods: List<Product>,
+    private var searchKeyWords: String?,
+    private var order_id: String?
+) : RecyclerView.Adapter<MyGoodsViewHolder>() {
     private val context = context
     private val productData: List<Product> = goods
-    private val isCartPageFragmet: Boolean = isCartPage
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyGoodsViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_home_search_product, parent, false)
@@ -141,12 +158,30 @@ class MyGoodsAdapter(context: Context, goods: List<Product>, isCartPage: Boolean
         holder.goodsPrice.text = String.format("￥ ${productData[pisition].price}")
         holder.goodsImg.setImageResource(productData[pisition].categoryImg)
         holder.goodsImg.setOnClickListener {
+            if (searchKeyWords != null) {
+                GrowingIO.getInstance().track(
+                    "searchResultClick",
+                    JSONObject()
+                        .put(GioProductId, productData[pisition].id)
+                        .put(GioProductName, productData[pisition].name)
+                        .put(GioSearchKeyWord, searchKeyWords)
+                )
+
+            }
             context.startActivity(
-                Intent(
-                    context,
-                    ProductDetailActivity::class.java
-                ).putExtra("product", productData[pisition].name)
+                Intent(context, ProductDetailActivity::class.java)
+                    .putExtra("product", productData[pisition].name)
             )
+
+            //搜索词（转化变量）
+            defaultPrefs(context)[productData[pisition].name + "search"] = searchKeyWords
+        }
+
+        if (order_id == null) {
+            holder.order_id.visibility = View.GONE
+        } else {
+            holder.order_id.visibility = View.VISIBLE
+            holder.order_id.text = "订单编号：$order_id"
         }
     }
 
@@ -155,5 +190,6 @@ class MyGoodsAdapter(context: Context, goods: List<Product>, isCartPage: Boolean
 class MyGoodsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val goodsName = itemView.findViewById<View>(R.id.goods_name) as TextView
     val goodsPrice = itemView.findViewById<View>(R.id.goods_price) as TextView
+    val order_id = itemView.findViewById<View>(R.id.order_id) as TextView
     val goodsImg = itemView.findViewById<View>(R.id.goods_img) as ImageView
 }

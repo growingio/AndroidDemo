@@ -20,10 +20,10 @@ class MainActivity : AppCompatActivity(), HomeFragment.OnFragmentInteractionList
         setContentView(R.layout.activity_main)
 
         val fragments = ArrayList<Fragment>()
-        val homeFragment = HomeFragment.newInstance()
-        val shoppingCartFragment = ShoppingCartFragment.newInstance()
-        val profileFragment = ProfileFragment.newInstance()
-        val categoryFragment = CategoryFragment.newInstance()
+        val homeFragment = HomeFragment()
+        val shoppingCartFragment = ShoppingCartFragment()
+        val profileFragment = ProfileFragment()
+        val categoryFragment = CategoryFragment()
 
         fragments.add(homeFragment)
         fragments.add(categoryFragment)

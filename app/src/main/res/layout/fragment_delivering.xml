@@ -6,63 +6,71 @@
               android:orientation="vertical"
               tools:context=".profile.DeliveringFragment">
 
-    <include layout="@layout/item_order"/>
+	<include layout="@layout/item_order"/>
 
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="30dp"
-            android:orientation="vertical">
+	<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:padding="30dp"
+			android:orientation="vertical">
 
-        <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/TextStyleTitle"
-                android:text="物流信息"/>
-        <TextView
-                style="@style/TextStyleContent"
-                android:drawableLeft="@drawable/shape_dot_black"
-                android:text="快递已经到北京中转站，预计明天送达"
-                android:drawablePadding="5dp"
-                android:layout_marginTop="18dp"/>
-        <TextView
-                style="@style/TextStyleContentGray"
-                android:text="2019.1.5 17:36"
-                android:layout_marginLeft="14dp"
-                android:layout_marginTop="8dp"/>
-        <TextView
-                style="@style/TextStyleContent"
-                android:drawableLeft="@drawable/shape_dot_black"
-                android:text="快递已经到南京中山路中转站"
-                android:drawablePadding="5dp"
-                android:layout_marginTop="18dp"/>
-        <TextView
-                style="@style/TextStyleContentGray"
-                android:text="2019.1.3 6:23"
-                android:layout_marginLeft="14dp"
-                android:layout_marginTop="8dp"/>
-        <TextView
-                style="@style/TextStyleContent"
-                android:drawableLeft="@drawable/shape_dot_black"
-                android:text="快递已经揽收"
-                android:drawablePadding="5dp"
-                android:layout_marginTop="18dp"/>
-        <TextView
-                style="@style/TextStyleContentGray"
-                android:text="2019.1.2 11:16"
-                android:layout_marginLeft="14dp"
-                android:layout_marginTop="8dp"/>
-        <TextView
-                style="@style/TextStyleContent"
-                android:drawableLeft="@drawable/shape_dot_black"
-                android:text="已发货"
-                android:drawablePadding="5dp"
-                android:layout_marginTop="18dp"/>
-        <TextView
-                style="@style/TextStyleContentGray"
-                android:text="2019.1.2 10:36"
-                android:layout_marginLeft="14dp"
-                android:layout_marginTop="8dp"/>
-    </LinearLayout>
+		<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				style="@style/TextStyleTitle"
+				android:text="物流信息"/>
+
+		<TextView
+				style="@style/TextStyleContent"
+				android:drawableLeft="@drawable/shape_dot_black"
+				android:text="快递已经到北京中转站，预计明天送达"
+				android:drawablePadding="5dp"
+				android:layout_marginTop="18dp"/>
+
+		<TextView
+				style="@style/TextStyleContentGray"
+				android:text="2019.1.5 17:36"
+				android:layout_marginLeft="14dp"
+				android:layout_marginTop="8dp"/>
+
+		<TextView
+				style="@style/TextStyleContent"
+				android:drawableLeft="@drawable/shape_dot_black"
+				android:text="快递已经到南京中山路中转站"
+				android:drawablePadding="5dp"
+				android:layout_marginTop="18dp"/>
+
+		<TextView
+				style="@style/TextStyleContentGray"
+				android:text="2019.1.3 6:23"
+				android:layout_marginLeft="14dp"
+				android:layout_marginTop="8dp"/>
+
+		<TextView
+				style="@style/TextStyleContent"
+				android:drawableLeft="@drawable/shape_dot_black"
+				android:text="快递已经揽收"
+				android:drawablePadding="5dp"
+				android:layout_marginTop="18dp"/>
+
+		<TextView
+				style="@style/TextStyleContentGray"
+				android:text="2019.1.2 11:16"
+				android:layout_marginLeft="14dp"
+				android:layout_marginTop="8dp"/>
+
+		<TextView
+				style="@style/TextStyleContent"
+				android:drawableLeft="@drawable/shape_dot_black"
+				android:text="已发货"
+				android:drawablePadding="5dp"
+				android:layout_marginTop="18dp"/>
+
+		<TextView
+				style="@style/TextStyleContentGray"
+				android:text="2019.1.2 10:36"
+				android:layout_marginLeft="14dp"
+				android:layout_marginTop="8dp"/>
+	</LinearLayout>
 
 </LinearLayout>

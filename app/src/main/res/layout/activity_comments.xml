@@ -4,7 +4,7 @@
 		xmlns:tools="http://schemas.android.com/tools"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		tools:context=".CommentsActivity"
+		tools:context=".category.CommentsActivity"
 		android:orientation="vertical">
 	
 	<include layout="@layout/include_page_title"/>

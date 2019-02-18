@@ -9,7 +9,7 @@ import com.growingio.giodemo.R
 import kotlinx.android.synthetic.main.activity_mine_order.*
 import kotlinx.android.synthetic.main.include_page_title.*
 
-class MineOrderActivity : AppCompatActivity() {
+class MyOrderActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +54,8 @@ class MineOrderActivity : AppCompatActivity() {
 
         viewpager_order.adapter = adapter
 
+        var indicator = intent.getIntExtra("indicator", 0)
+        viewpager_order.currentItem = indicator
         //这两个函数设置即可实现点击和滑动切换连动效果
         tab_layout.setupWithViewPager(viewpager_order)
     }

@@ -6,13 +6,38 @@ import com.growingio.giodemo.cart.defaultPrefs
 import com.growingio.giodemo.cart.get
 
 data class Product(
-    val name: String, val price: Int,
-    val categoryImg: Int, val sellImg: Int, val desc: String, val status: String, val orderNumber: String
+    val id: String,
+    val name: String,
+    val price: Int,
+    val categoryImg: Int,
+    val sellImg: Int,
+    val desc: String,
+    val status: String,
+    val orderNumber: String
 )
+
+//打点事件变量名
+const val GioProductId = "productId_var"
+const val GioProductName = "productName_var"
+const val GioAdPosition = "floor_var"
+const val GioSearchKeyWord = "searchWord_var"
+const val GioBuyQuantity = "buyQuantity_var"
+const val GioOrderId = "orderId_var"
+const val GioOrderAmount = "orderAmount"
+const val GioPayMethod = "paymentMethod_var"
+const val GioPayment = "payAmount_var"
+const val GioShareChannel = "sharechannel"
+
+//转化事件流量位标示
+const val EVAR_BANNER = "banner"
+const val EVAR_LIMITED = "限时秒杀"
+const val EVAR_SUGGESTED = "GIO推荐"
+const val EVAR_PRODUCTS_SUGGESTED = "商品详情页推荐"
 
 
 val gioCup =
     Product(
+        "001",
         "GIO 马克杯",
         39,
         R.drawable.hot5,
@@ -23,6 +48,7 @@ val gioCup =
     )
 val gioShirt =
     Product(
+        "002",
         "GIO 帽衫",
         99,
         R.drawable.hot6,
@@ -33,6 +59,7 @@ val gioShirt =
     )
 val theHandBookOfGrowthHacker =
     Product(
+        "003",
         "增长黑客手册",
         0,
         R.drawable.hot2,
@@ -43,6 +70,7 @@ val theHandBookOfGrowthHacker =
     )
 val theHandBookOfDataOperation =
     Product(
+        "004",
         "数据运营手册",
         0,
         R.drawable.hot3,
@@ -52,6 +80,7 @@ val theHandBookOfDataOperation =
         Math.random().toString().substring(3, 13)
     )
 val theHandBookOfPMAnalytics = Product(
+    "005",
     "产品经理数据分析手册",
     0,
     R.drawable.hot4,

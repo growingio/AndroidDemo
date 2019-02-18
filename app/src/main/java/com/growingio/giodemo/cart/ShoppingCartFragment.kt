@@ -9,18 +9,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import com.growingio.giodemo.MyGoodsAdapter
-import com.growingio.giodemo.R
-import com.growingio.giodemo.listProduct
-import com.growingio.giodemo.productInTheCart
+import com.growingio.android.sdk.collection.GrowingIO
+import com.growingio.giodemo.*
+import org.json.JSONObject
 
 class ShoppingCartFragment : Fragment() {
 
-    companion object {
-        fun newInstance(): ShoppingCartFragment {
-            return ShoppingCartFragment()
-        }
-    }
+    object ShoppingCartFragment
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_shopping_cart, container, false)
@@ -29,13 +24,25 @@ class ShoppingCartFragment : Fragment() {
 
         productInTheCart(activity!!)
         var rcCart = view.findViewById<View>(R.id.rc_cart) as RecyclerView
-        rcCart.adapter = MyGoodsAdapter(activity!!, listProduct!!, true)
+        rcCart.adapter = MyGoodsAdapter(activity!!, listProduct!!, null, null)
         rcCart.layoutManager = LinearLayoutManager(activity)
 
         sbmtOrder.isEnabled = listProduct!!.size > 0
 
         sbmtOrder.setOnClickListener {
             startActivity(Intent(activity, SubmtOrderActivity::class.java))
+
+            for (product in listProduct!!) {
+                GrowingIO.getInstance().track(
+                    "checkOut",
+                    JSONObject()
+                        .put(GioProductId, product.id)
+                        .put(GioProductName, product.name)
+                        .put(GioBuyQuantity, 1)
+                        .put(GioOrderAmount, product.price)
+                )
+            }
+
         }
         return view
     }

@@ -44,6 +44,7 @@
 				<TextView
 						android:layout_marginTop="8dp"
 						style="@style/TextStyleTitle"
+						android:textSize="14sp"
 						android:text="商品分类"/>
 			</LinearLayout>
 			
@@ -65,6 +66,7 @@
 				<TextView
 						android:text="精品推荐"
 						android:layout_marginTop="8dp"
+						android:textSize="14sp"
 						style="@style/TextStyleTitle"/>
 			</LinearLayout>
 			
@@ -85,6 +87,7 @@
 				<TextView
 						android:layout_marginTop="8dp"
 						style="@style/TextStyleTitle"
+						android:textSize="14sp"
 						android:text="购物车"/>
 			</LinearLayout>
 			
@@ -104,6 +107,7 @@
 				<TextView
 						android:layout_marginTop="8dp"
 						style="@style/TextStyleTitle"
+						android:textSize="14sp"
 						android:text="查看订单"/>
 			</LinearLayout>
 		
