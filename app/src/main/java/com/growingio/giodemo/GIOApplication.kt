@@ -32,8 +32,6 @@ class GIOApplication : Application() {
             this, GTouchConfig()
                 .setDebugEnable(true)
                 .setEventPopupEnable(true)
-                .setEventPopupShowTimeout(3000)
-                .setServerHost("http://k8s-marketing-automation-messages.growingio.com")
                 .setEventPopupListener(object : EventPopupListener {
                     override fun onLoadFailed(
                         eventId: String?,
