@@ -24,7 +24,7 @@ class GIOApplication : Application() {
                 .trackAllFragments()
                 .setTestMode(true)
                 .setDebugMode(true)
-                .setChannel("XXX应用商店")
+                .setChannel(BuildConfig.CHANNEL)
         )
         GrowingIO.getInstance().userId = "GIOXiaoYing"
 

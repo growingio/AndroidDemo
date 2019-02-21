@@ -24,8 +24,8 @@ class SubmtOrderActivity : AppCompatActivity() {
             listProduct!!.add(product)
             orderFee = product.price
         } else {
-            for (product in listProduct!!) {
-                orderFee += product.price
+            for (p in listProduct!!) {
+                orderFee += p.price
             }
         }
 
