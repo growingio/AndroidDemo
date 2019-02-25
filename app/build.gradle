@@ -53,6 +53,6 @@ dependencies {
     //GrowingIO 无埋点 SDK
     implementation 'com.growingio.android:vds-android-agent:autotrack-2.6.9@aar'
 
-    //GrowingIO 触达 SDK（未上线所以使用文件包）
-    implementation(name: 'gtouch-0.1.0', ext: 'aar')
+    //GrowingIO 触达 SDK
+    implementation 'com.growingio.android:gtouch:0.1.0@aar'
 }
