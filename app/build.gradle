@@ -29,7 +29,7 @@ android {
         }
 
         debug {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
@@ -53,7 +53,6 @@ android {
 
 
 repositories {
-    mavenLocal()
     flatDir {
         dirs 'libs'   // aar目录
     }
@@ -73,9 +72,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     //GrowingIO 无埋点 SDK
-//    implementation 'com.growingio.android.test:t-vds-android-agent:' + GROWINGIO_SDK_VERSION
-    implementation 'com.growingio.android:vds-android-agent:' + GROWINGIO_SDK_VERSION
+    implementation 'com.growingio.android:vds-android-agent:autotrack-2.6.8@aar'
 
-    //GrowingIO 触达 SDK（未上线所以使用文件包）
-    implementation(name: 'gtouch-0.0.5', ext: 'aar')
+    //GrowingIO 触达 SDK
+    implementation 'com.growingio.android:gtouch:0.1.0@aar'
 }
