@@ -22,8 +22,8 @@ class GIOApplication : Application() {
         GrowingIO.startWithConfiguration(
             this, Configuration()
                 .trackAllFragments()
-                .setTestMode(true)
-                .setDebugMode(true)
+                .setTestMode(BuildConfig.DEBUG)
+                .setDebugMode(BuildConfig.DEBUG)
                 .setChannel(BuildConfig.CHANNEL)
         )
         GrowingIO.getInstance().userId = "GIOXiaoYing"
