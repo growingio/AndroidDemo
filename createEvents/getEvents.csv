@@ -1,0 +1,11 @@
+,associatedAt,createdAt,creator,description,id,key,name,scope,type,updatedAt,updater
+0,0,1550822373000,wangying,分享成功渠道（微信朋友圈、微信好友、微博、QQ）,woVn2do2,sharechannel,分享渠道,user,String,1550822373000,wangying
+1,0,1550822373000,wangying,实际支付金额,QReW6joq,payAmount_var,支付金额,user,Double,1550822373000,wangying
+2,0,1550822373000,wangying,支付方式,nRb8pdo3,paymentMethod_var,支付方式,user,String,1550822373000,wangying
+3,0,1550822373000,wangying,订单金额,a9BwxORn,orderAmount,订单金额,user,Double,1550822373000,wangying
+4,0,1550822373000,wangying,订单ID,4PYngMoM,orderId_var,订单ID,user,String,1550822373000,wangying
+5,0,1550822373000,wangying,购买数量,nPNLvD9W,buyQuantity_var,购买数量,user,Int,1550822373000,wangying
+6,0,1550822372000,wangying,搜索词：预置搜索词,a9amer9B,searchWord_var,搜索词,user,String,1550822372000,wangying
+7,0,1550822372000,wangying,首页所有流量位，包括Banner、限时秒杀、GIO推荐；商品详情页推荐位,noqVWv9k,floor_var,流量位,user,String,1550822372000,wangying
+8,0,1550822372000,wangying,即商品的名称:例如：渠道分析手册,xRxNjXo5,productName_var,商品名称,user,String,1550822372000,wangying
+9,0,1550822220000,wangying,"即商品的唯一ID编号:001,002,003,004，005",xogn7BPm,productId_var,商品ID,user,String,1550822220000,wangying
