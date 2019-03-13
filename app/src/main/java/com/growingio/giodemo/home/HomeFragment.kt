@@ -2,10 +2,12 @@ package com.growingio.giodemo.home
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Rect
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
+import android.support.v4.widget.NestedScrollView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,17 +15,18 @@ import android.widget.ImageView
 import com.growingio.android.sdk.collection.GrowingIO
 import com.growingio.giodemo.*
 import com.growingio.giodemo.profile.MyOrderActivity
+import kotlinx.android.synthetic.main.fragment_home.view.*
 import org.json.JSONObject
 import java.lang.ref.WeakReference
+
 
 class HomeFragment : Fragment(), View.OnClickListener {
     object HomeFragment
 
     private val productKey = "product"
     private var listener: OnFragmentInteractionListener? = null
-    private var bannerPager: ViewPager? = null
 
-
+    // tab 页面之间跳转，通过 activity 通信
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is OnFragmentInteractionListener) {
@@ -36,12 +39,10 @@ class HomeFragment : Fragment(), View.OnClickListener {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
-        bannerPager = view.findViewById<View>(R.id.banner) as ViewPager
+        var scrollTask = BannerScrollTask(view.banner)
 
-        var scrollTask: BannerScrollTask = BannerScrollTask(bannerPager!!)
-
-        bannerPager!!.adapter = MyPagerAdapter(activity as Context?, bannerPager!!)
-        bannerPager!!.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        view.banner.adapter = MyPagerAdapter(activity as Context?, view.banner)
+        view.banner.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(p0: Int) {}
 
             override fun onPageScrolled(p0: Int, p1: Float, p2: Int) {}
@@ -52,41 +53,57 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
                     // start
                     when (p0) {
-                        1 -> GrowingIO.getInstance().track(
+                        1 -> {
+                            if (!isViewSelfVisible(view.banner)) return
+                            GrowingIO.getInstance().track(
                             "homePageGoodsImp", JSONObject()
                                 .put(GioProductId, gioCup.id)
                                 .put(GioAdPosition, "banner")
                                 .put(GioProductName, gioCup.name)
-                        )
-
-                        2 -> GrowingIO.getInstance().track(
-                            "homePageGoodsImp", JSONObject()
-                                .put(GioProductId, gioShirt.id)
-                                .put(GioAdPosition, "banner")
-                                .put(GioProductName, gioShirt.name)
-                        )
+                            )
+                        }
+                        2 -> {
+                            if (!isViewSelfVisible(view.banner)) return
+                            GrowingIO.getInstance().track(
+                                "homePageGoodsImp", JSONObject()
+                                    .put(GioProductId, gioShirt.id)
+                                    .put(GioAdPosition, "banner")
+                                    .put(GioProductName, gioShirt.name)
+                            )
+                        }
                     }
                 } else {
-
-                    bannerPager!!.removeCallbacks(scrollTask)
+                    view.banner.removeCallbacks(scrollTask)
                 }
-
             }
         })
 
-        val search = view.findViewById<View>(R.id.search)
-        search.setOnClickListener(this)
-
-        view.findViewById<View>(R.id.limited1).setOnClickListener(this)
-        view.findViewById<View>(R.id.limited2).setOnClickListener(this)
-        view.findViewById<View>(R.id.limited3).setOnClickListener(this)
-        view.findViewById<View>(R.id.category1).setOnClickListener(this)
-        view.findViewById<View>(R.id.category2).setOnClickListener(this)
-        view.findViewById<View>(R.id.category3).setOnClickListener(this)
-        view.findViewById<View>(R.id.category4).setOnClickListener(this)
-        view.findViewById<View>(R.id.img_suggested).setOnClickListener(this)
-
         scrollTask.run()
+
+        view.search.setOnClickListener(this)
+        view.limited1.setOnClickListener(this)
+        view.limited2.setOnClickListener(this)
+        view.limited3.setOnClickListener(this)
+        view.img_suggested.setOnClickListener(this)
+        view.category1.setOnClickListener(this)
+        view.category2.setOnClickListener(this)
+        view.category3.setOnClickListener(this)
+        view.category4.setOnClickListener(this)
+
+        //view绘制后，查看当前流量位的展示，发送自定义事件
+        trackAdPosition(view.limited1, "限时秒杀", theHandBookOfGrowthHacker)
+        trackAdPosition(view.limited2, "限时秒杀", theHandBookOfDataOperation)
+        trackAdPosition(view.limited3, "限时秒杀", theHandBookOfPMAnalytics)
+        trackAdPosition(view.img_suggested, "GIO推荐", gioShirt)
+
+        //上下滚动，检测流量位是否有展示，每次消失再展示，都发送一个自定义事件
+        view.scroll_view.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { _, _, _, _, _ ->
+            // 广告流量为展现次数打点 ~ 判断当前 view 是否在屏幕上
+            trackAdPosition(view.limited1, "限时秒杀", theHandBookOfGrowthHacker)
+            trackAdPosition(view.limited2, "限时秒杀", theHandBookOfDataOperation)
+            trackAdPosition(view.limited3, "限时秒杀", theHandBookOfPMAnalytics)
+            trackAdPosition(view.img_suggested, "GIO推荐", gioShirt)
+        })
 
         return view
     }
@@ -208,13 +225,10 @@ class HomeFragment : Fragment(), View.OnClickListener {
             if (homeFrag != null) {
                 var pagePosition = viewPager.currentItem + 1
                 viewPager.setCurrentItem(pagePosition, true)
-
-                viewPager.postDelayed(this, 2000)
+                viewPager.postDelayed(this, 5000)
             }
         }
 
     }
 
 }
-
-

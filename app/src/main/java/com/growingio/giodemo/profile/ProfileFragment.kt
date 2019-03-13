@@ -9,22 +9,16 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import android.widget.TextView
 import com.growingio.giodemo.R
+import kotlinx.android.synthetic.main.fragment_profile.view.*
+import kotlinx.android.synthetic.main.item_profile.view.*
 
 class ProfileFragment : Fragment() {
 
-    private var recyclerView: RecyclerView? = null
-
-    object ProfileFragment
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
-        recyclerView = view.findViewById<View>(R.id.rc_profile) as RecyclerView
-        recyclerView!!.adapter = MyProfileAdapter(activity as Context)
-        recyclerView!!.layoutManager = LinearLayoutManager(activity as Context)
+        view.rc_profile.adapter = MyProfileAdapter(activity as Context)
+        view.rc_profile.layoutManager = LinearLayoutManager(activity as Context)
         return view
     }
 
@@ -61,10 +55,10 @@ class MyProfileAdapter(context: Context) : RecyclerView.Adapter<MyViewHolder>() 
 }
 
 class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    val title = itemView.findViewById<View>(R.id.tv_title) as TextView
-    val content = itemView.findViewById<View>(R.id.tv_content) as TextView
-    val arrow = itemView.findViewById<View>(R.id.img_arrow_right) as ImageView
-    val root = itemView.findViewById<View>(R.id.root) as RelativeLayout
+    val title = itemView.tv_title!!
+    val content = itemView.tv_content!!
+    val arrow = itemView.img_arrow_right!!
+    val root = itemView.img_arrow_right!!
 
 }
 

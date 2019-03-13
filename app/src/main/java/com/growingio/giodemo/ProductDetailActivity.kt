@@ -2,6 +2,7 @@ package com.growingio.giodemo
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.widget.NestedScrollView
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
@@ -14,6 +15,8 @@ import com.growingio.giodemo.cart.defaultPrefs
 import com.growingio.giodemo.cart.set
 import com.growingio.giodemo.category.CommentsActivity
 import kotlinx.android.synthetic.main.activity_product_detail.*
+import kotlinx.android.synthetic.main.dialog_share.view.*
+import kotlinx.android.synthetic.main.dialog_share_success.view.*
 import org.json.JSONObject
 
 class ProductDetailActivity : AppCompatActivity(), View.OnClickListener {
@@ -46,13 +49,13 @@ class ProductDetailActivity : AppCompatActivity(), View.OnClickListener {
         shareDialog!!.setCanceledOnTouchOutside(true)
         shareSuccessDialog!!.setCanceledOnTouchOutside(true)
 
-        dialogView.findViewById<View>(R.id.moments).setOnClickListener(this)
-        dialogView.findViewById<View>(R.id.wechat).setOnClickListener(this)
-        dialogView.findViewById<View>(R.id.weibo).setOnClickListener(this)
-        dialogView.findViewById<View>(R.id.qq).setOnClickListener(this)
+        dialogView.moments.setOnClickListener(this)
+        dialogView.wechat.setOnClickListener(this)
+        dialogView.weibo.setOnClickListener(this)
+        dialogView.qq.setOnClickListener(this)
 
-        successViewView.findViewById<View>(R.id.btn_ok).setOnClickListener(this)
-        shareDesc = successViewView.findViewById<View>(R.id.tv_share_desc) as TextView
+        successViewView.btn_ok.setOnClickListener(this)
+        shareDesc = successViewView.tv_share_desc
 
         shareDialog!!.setView(dialogView)
         shareSuccessDialog!!.setView(successViewView)
@@ -72,6 +75,10 @@ class ProductDetailActivity : AppCompatActivity(), View.OnClickListener {
         tv_desc.text = productObj!!.desc
         tv_price.text = String.format("￥ ${productObj!!.price}")
 
+        nested_sv.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { _, _, _, _, _ ->
+            trackAdPosition(img_book, "商品详情页推荐位", theHandBookOfGrowthHacker)
+            trackAdPosition(img_shirts, "商品详情页推荐位", gioShirt)
+        })
     }
 
 

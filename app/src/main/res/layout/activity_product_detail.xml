@@ -4,7 +4,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 	
-	<ScrollView
+	<android.support.v4.widget.NestedScrollView
+			android:id="@+id/nested_sv"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:background="#fff"
@@ -141,7 +142,7 @@
 					android:paddingRight="30dp"
 					android:paddingTop="18dp"
 					android:paddingBottom="18dp">
-				
+
 				<TextView
 						android:id="@+id/textView"
 						android:layout_width="wrap_content"
@@ -224,6 +225,7 @@
 							android:orientation="vertical">
 						
 						<ImageView
+								android:id="@+id/img_book"
 								android:layout_width="150dp"
 								android:layout_height="100dp"
 								android:src="@drawable/suggest1"/>
@@ -249,6 +251,7 @@
 							android:orientation="vertical">
 						
 						<ImageView
+								android:id="@+id/img_shirts"
 								android:layout_width="150dp"
 								android:layout_height="100dp"
 								android:src="@drawable/suggest2"/>
@@ -273,7 +276,7 @@
 		</LinearLayout>
 	
 	
-	</ScrollView>
+	</android.support.v4.widget.NestedScrollView>
 	
 	<LinearLayout
 			android:layout_width="match_parent"

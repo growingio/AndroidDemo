@@ -13,7 +13,7 @@ android {
         minSdkVersion 17
         targetSdkVersion 28
         versionCode 1
-        versionName "1.0"
+        versionName "1.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
 
@@ -53,6 +53,7 @@ android {
 
 
 repositories {
+    mavenLocal()
     flatDir {
         dirs 'libs'   // aar目录
     }
@@ -72,7 +73,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     //GrowingIO 无埋点 SDK
-    implementation 'com.growingio.android:vds-android-agent:autotrack-2.6.8@aar'
+    implementation 'com.growingio.android:vds-android-agent:autotrack-2.7.0@aar'
 
     //GrowingIO 触达 SDK
     implementation 'com.growingio.android:gtouch:0.1.0@aar'

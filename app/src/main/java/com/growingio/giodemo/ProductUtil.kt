@@ -2,8 +2,12 @@ package com.growingio.giodemo
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Rect
+import android.view.View
+import com.growingio.android.sdk.collection.GrowingIO
 import com.growingio.giodemo.cart.defaultPrefs
 import com.growingio.giodemo.cart.get
+import org.json.JSONObject
 
 data class Product(
     val id: String,
@@ -130,4 +134,32 @@ fun syncProduct(intent: Intent): Product? {
 
         else -> null
     }
+}
+
+/**
+ * 打点逻辑：广告位的 view 可见情况下放自定义事件，滚动消失后，再次出现，就再次发送自定义事件
+ * 数据现象：频繁滚动出屏幕，又再次出现的广告位元素，自定义事件大于始终可见的
+ */
+fun trackAdPosition(view: View, adPositionDesc: String, product: Product) {
+    var viewVisibility = isViewSelfVisible(view)
+    if (viewVisibility && view.getTag(R.string.GIO_AD_IMP_TAG) == null) {
+        GrowingIO.getInstance().track(
+            "homePageGoodsImp",
+            JSONObject().put(GioProductId, product.id)
+                .put(GioProductName, product.name)
+                .put(GioAdPosition, adPositionDesc)
+        )
+        view.setTag(R.string.GIO_AD_IMP_TAG, true)
+    }
+
+    if (!viewVisibility) {
+        view.setTag(R.string.GIO_AD_IMP_TAG, null)
+    }
+}
+
+// view 部分不可见返回 false，完全可见返回 true
+fun isViewSelfVisible(view: View): Boolean {
+    var rect = Rect()
+    view.getLocalVisibleRect(rect)
+    return rect.top == 0
 }
