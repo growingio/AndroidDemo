@@ -17,7 +17,7 @@ class ShoppingCartFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_shopping_cart, container, false)
 
-        productInTheCart(activity!!)
+        productInTheCart(context!!)
         view.rc_cart.adapter = MyGoodsAdapter(activity!!, listProduct!!, null, null)
         view.rc_cart.layoutManager = LinearLayoutManager(activity)
 
@@ -33,7 +33,7 @@ class ShoppingCartFragment : Fragment() {
                         .put(GioProductId, product.id)
                         .put(GioProductName, product.name)
                         .put(GioBuyQuantity, 1)
-                        .put(GioOrderAmount, product.price)
+                        .put(GioPayment, product.price)
                 )
             }
 

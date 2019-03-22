@@ -31,7 +31,7 @@ class CounterActivity : AppCompatActivity() {
                 JSONObject()
                     .put(GioOrderId, orderId)
                     .put(GioBuyQuantity, num)
-                    .put(GioOrderAmount, bill)
+                    .put(GioPayment, bill)
                     .put(GioPayMethod, "GIO支付")
             )
 
@@ -41,7 +41,7 @@ class CounterActivity : AppCompatActivity() {
                     JSONObject()
                         .put(GioOrderId, orderId)
                         .put(GioBuyQuantity, 1)
-                        .put(GioOrderAmount, product.price)
+                        .put(GioPayment, product.price)
                         .put(GioProductName, product.name)
                         .put(GioProductId, product.id)
                         .put(GioPayMethod, "GIO支付")

@@ -24,9 +24,10 @@ class PaySuccessActivity : AppCompatActivity() {
         GrowingIO.getInstance().track(
             "payOrderSuccess",
             JSONObject()
-                .put(GioProductId, id)
-                .put(GioOrderAmount, pay)
+                .put(GioOrderId, id)
+                .put(GioPayMethod, "GIO 支付")
                 .put(GioPayment, pay)
+                .put(GioBuyQuantity, listProduct!!.size)
         )
 
         val preference = defaultPrefs(this)
@@ -41,7 +42,7 @@ class PaySuccessActivity : AppCompatActivity() {
                 "paySPUSuccess", JSONObject()
                     .put(GioProductId, product.id)
                     .put(GioProductName, product.name)
-                    .put(GioOrderAmount, listProduct!!.size)
+                    .put(GioBuyQuantity, listProduct!!.size)
                     .put(GioPayment, pay)
                     .put(GioOrderId, id)
                     .put(GioPayMethod, "GIO 支付")

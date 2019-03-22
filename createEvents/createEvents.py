@@ -159,9 +159,9 @@ def pplEvents():
 
 
   
-events()
+# events()
 getCstmEventsVariable()
-cstmEvents()
-pvarEvents()
-pplEvents()
+# cstmEvents()
+# pvarEvents()
+# pplEvents()
 
