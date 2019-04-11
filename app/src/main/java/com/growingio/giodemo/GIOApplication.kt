@@ -27,6 +27,13 @@ class GIOApplication : Application() {
                 .setTestMode(BuildConfig.DEBUG)
                 .setDebugMode(BuildConfig.DEBUG)
                 .setChannel(BuildConfig.CHANNEL)
+//              ------Demo 环境， 请勿修改------
+                .setDataHost("https://demo1gta.growingio.com")
+                .setReportHost("https://demo1gta.growingio.com")
+                .setTrackerHost("https://apifwd.growingio.com")
+                .setGtaHost("https://demo1gta.growingio.com")
+                .setWsHost("wss://demo1gta.growingio.com")
+//              ------Demo 环境， 请勿修改------
 //              DeepLink 直达商品详情页面，注意：自定义参数的接收与建立 DeepLink 唤醒链接时设置一致
                 .setDeeplinkCallback { params: MutableMap<String, String>, errorCode: Int ->
                     if (errorCode == DeeplinkCallback.SUCCESS && params["JumpTo"] != null) {
