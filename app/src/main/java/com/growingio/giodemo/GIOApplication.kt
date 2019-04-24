@@ -28,7 +28,7 @@ class GIOApplication : Application() {
                 .setDebugMode(BuildConfig.DEBUG)
                 .setChannel(BuildConfig.CHANNEL)
 //              ------Demo 环境， 请勿修改------
-                .setDataHost("https://demo1gta.growingio.com")
+                .setDataHost("https://demo1.growingio.com")
                 .setReportHost("https://demo1gta.growingio.com")
                 .setTrackerHost("https://apifwd.growingio.com")
                 .setGtaHost("https://demo1gta.growingio.com")
