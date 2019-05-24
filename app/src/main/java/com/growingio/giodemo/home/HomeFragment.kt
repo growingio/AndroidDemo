@@ -2,7 +2,6 @@ package com.growingio.giodemo.home
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Rect
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.view.PagerAdapter
@@ -41,6 +40,8 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
         var scrollTask = BannerScrollTask(view.banner)
 
+        //Banner 一般都为图片，没有 content ,可以调用 trackBanner 接口给 banner 增加描述，采集 content, 注意 content 顺序和图片一致
+        GrowingIO.trackBanner(view.banner, arrayOf(gioCup.name, gioShirt.name).toMutableList())
         view.banner.adapter = MyPagerAdapter(activity as Context?, view.banner)
         view.banner.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(p0: Int) {}
@@ -89,6 +90,11 @@ class HomeFragment : Fragment(), View.OnClickListener {
         view.category2.setOnClickListener(this)
         view.category3.setOnClickListener(this)
         view.category4.setOnClickListener(this)
+
+        GrowingIO.setViewContent(view.limited1, "增长黑客手册")
+        GrowingIO.setViewContent(view.limited2, "数据运营手册")
+        GrowingIO.setViewContent(view.limited3, "产品经理数据分析")
+        GrowingIO.setViewContent(view.img_suggested, "GIO 帽衫")
 
         //view绘制后，查看当前流量位的展示，发送自定义事件
         trackAdPosition(view.limited1, "限时秒杀", theHandBookOfGrowthHacker)
