@@ -93,18 +93,22 @@ class ProductDetailActivity : AppCompatActivity(), View.OnClickListener {
             R.id.weibo -> {
                 shareDesc!!.text = String.format(formatString, productObj!!.name, "微博")
                 shareSuccess("微博")
+                GrowingIO.getInstance().setPeopleVariable(JSONObject().put("share","weibo"))
             }
             R.id.wechat -> {
                 shareDesc!!.text = String.format(formatString, productObj!!.name, "微信")
                 shareSuccess("微信")
+                GrowingIO.getInstance().setPeopleVariable(JSONObject().put("share","微信"))
             }
             R.id.moments -> {
                 shareDesc!!.text = String.format(formatString, productObj!!.name, "朋友圈")
                 shareSuccess("朋友圈")
+                GrowingIO.getInstance().setPeopleVariable(JSONObject().put("share","朋友圈"))
             }
             R.id.qq -> {
                 shareDesc!!.text = String.format(formatString, productObj!!.name, "QQ")
                 shareSuccess("QQ")
+                GrowingIO.getInstance().setPeopleVariable(JSONObject().put("share","QQ"))
             }
 
             R.id.btn_ok -> {
