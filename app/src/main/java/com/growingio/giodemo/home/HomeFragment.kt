@@ -12,8 +12,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.growingio.android.sdk.collection.GrowingIO
+import com.growingio.android.sdk.collection.ImpressionMark
 import com.growingio.giodemo.*
 import com.growingio.giodemo.profile.MyOrderActivity
+import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import org.json.JSONObject
 import java.lang.ref.WeakReference
@@ -78,6 +80,8 @@ class HomeFragment : Fragment(), View.OnClickListener {
                 }
             }
         })
+
+        GrowingIO.getInstance().markViewImpression(ImpressionMark(view.banner,"banner_imp"))
 
         scrollTask.run()
 

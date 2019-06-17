@@ -33,11 +33,11 @@ class GIOApplication : Application() {
 //                    https://gray-gta.growingio.com
 //                    wss://gray-gta.growingio.com
 
-                .setDataHost("https://gray-www.growingio.com")
-                .setReportHost("https://gray-gta.growingio.com")
-                .setTrackerHost("https://apifwd.growingio.com")
-                .setGtaHost("https://gray-gta.growingio.com")
-                .setWsHost("wss://gray-gta.growingio.com")
+//                .setDataHost("https://gray-www.growingio.com")
+//                .setReportHost("https://gray-gta.growingio.com")
+//                .setTrackerHost("https://apifwd.growingio.com")
+//                .setGtaHost("https://gray-gta.growingio.com")
+//                .setWsHost("wss://gray-gta.growingio.com")
 
 //                .setDataHost(" http://k8s-qa-www.growingio.com")
 //                .setReportHost("http://k8s-qa-gta.growingio.com")
