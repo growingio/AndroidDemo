@@ -1,7 +1,7 @@
 # GrowingIO API Script
 
 ## 1. 功能介绍
-批量导出和导入 GrowingIO 的自定义事件和变量
+批量导出和导入 GrowingIO 的自定义事件和变量, 根据 [GrowingIO 帮助文档埋点接口上传 API 编写](https://docs.growingio.com/docs/api/mai-dian-shu-ju-shang-chuan-api)。
   
 ## 2. 使用步骤  
 * ### 环境准备  
