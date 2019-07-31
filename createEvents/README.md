@@ -1,7 +1,7 @@
 # GrowingIO API Script
 
 ## 1. 功能介绍
-批量导出和导入 GrowingIO 的自定义事件和变量
+批量导出和导入 GrowingIO 的自定义事件和变量, 根据 [GrowingIO 帮助文档埋点接口上传 API 编写](https://docs.growingio.com/docs/api/mai-dian-shu-ju-shang-chuan-api)。
   
 ## 2. 使用步骤  
 * ### 环境准备  
@@ -24,13 +24,15 @@
 * ### 配置文件填写    
     编辑文件 config.ini，填写文件中对应字段。  
 
-    字段获取方式：  
-|  字段名称   	|   获取方式	|
+    字段获取方式：    
+    
+|字段名称|获取方式|
 |---	|---	|
-|   project_id	|官网登陆后->右上角设置小图标-项目概览->左侧基本信息中的“项目ID”|
-|   publicKey	|同上项目概览页面，复制“项目公钥”|
-|   privateKey	|同上项目概览页面，复制“项目私钥”|
-|   project_uid	|点击GrowingIO Logo，进入“首页”，复制url中对应字段-> https://www.growingio.com/projects/复制这里的字符串/homepage/overview	|
+|project_id|官网登陆后->右上角设置小图标-项目概览->左侧基本信息中的“项目ID”|
+|publicKey|同上项目概览页面，复制“项目公钥”|
+|privateKey|同上项目概览页面，复制“项目私钥”|
+|project_uid|点击GrowingIO Logo，进入“首页”，复制url中对应字段-> https://www.growingio.com/projects/复制这里的字符串/homepage/overview|  
+
 * ### 执行脚本
 
     ```

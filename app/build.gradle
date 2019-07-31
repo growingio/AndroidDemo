@@ -29,6 +29,18 @@ android {
         resValue("string", "growingio_project_id", "97fd6815651f25fb")
         resValue("string", "growingio_url_scheme", "growing.9b4f02dc593cf331")
 
+        manifestPlaceholders = [
+                PACKAGE_NAME        : "com.growingio.giodemo",
+
+                GPUSH_XIAOMI_APP_ID : "2882303761518008990",
+                GPUSH_XIAOMI_APP_KEY: "5161800834990",
+
+                GPUSH_HUAWEI_APP_ID : "100867057",
+
+                GPUSH_MEIZU_APP_ID  : "121348",
+                GPUSH_MEIZU_APP_KEY : "7bf587c9769441a9b70a951805d247d2",
+        ]
+
     }
     buildTypes {
         release {
@@ -76,8 +88,6 @@ repositories {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    api files('libs/vds-android-agent-autotrack-2.7.7.aar')
-
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
@@ -89,7 +99,15 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     //GrowingIO 无埋点 SDK
-//    implementation 'com.growingio.android.test:t-vds-android-agent:autotrack-2.7.7-imp@aar'
+    implementation 'com.growingio.android:vds-android-agent:autotrack-2.7.5@aar'
+
     //GrowingIO 触达 SDK
-    implementation 'com.growingio.android:gtouch:0.1.0@aar'
+    implementation(name: 'gtouch-0.2.0', ext: 'aar')
+    implementation(name: 'core-0.2.0', ext: 'aar')
+    implementation(name: 'huawei-adapter-0.2.0', ext: 'aar')
+    implementation(name: 'meizu-adapter-0.2.0', ext: 'aar')
+    implementation(name: 'xiaomi-adapter-0.2.0', ext: 'aar')
+    implementation 'com.huawei.android.hms:push:2.6.3.301'
+    implementation 'com.meizu.flyme.internet:push-internal:3.8.1'
+    implementation 'com.squareup.okhttp3:okhttp:3.12.1'
 }

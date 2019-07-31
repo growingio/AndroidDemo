@@ -23,6 +23,8 @@ allprojects {
     repositories {
         google()
         jcenter()
+        // 华为仓库
+        maven { url 'http://developer.huawei.com/repo/' }
     }
 }
 
