@@ -12,7 +12,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.growingio.android.sdk.collection.GrowingIO
-import com.growingio.android.sdk.collection.ImpressionMark
 import com.growingio.giodemo.*
 import kotlinx.android.synthetic.main.fragment_category.view.*
 import kotlinx.android.synthetic.main.item_product.view.*

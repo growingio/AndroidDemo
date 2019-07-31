@@ -13,12 +13,17 @@ import kotlinx.android.synthetic.main.fragment_shopping_cart.view.*
 import org.json.JSONObject
 
 class ShoppingCartFragment : Fragment() {
+    private lateinit var adapter: MyGoodsAdapter
+    private var created = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_shopping_cart, container, false)
 
-        productInTheCart(context!!)
-        view.rc_cart.adapter = MyGoodsAdapter(activity!!, listProduct!!, null, null)
+        created = true
+
+        adapter = MyGoodsAdapter(activity!!, listProduct!!, null, null)
+        view.rc_cart.adapter = adapter
+
         view.rc_cart.layoutManager = LinearLayoutManager(activity)
 
         view.btn_sbmt_order.isEnabled = listProduct!!.size > 0
@@ -39,6 +44,15 @@ class ShoppingCartFragment : Fragment() {
 
         }
         return view
+    }
+
+    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
+        super.setUserVisibleHint(isVisibleToUser)
+
+        if (isVisibleToUser && created) {
+            productInTheCart(context!!)
+            adapter.notifyDataSetChanged()
+        }
     }
 
 

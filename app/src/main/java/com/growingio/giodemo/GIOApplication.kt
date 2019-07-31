@@ -28,28 +28,11 @@ class GIOApplication : Application() {
                 .setDebugMode(BuildConfig.DEBUG)
                 .setChannel(BuildConfig.CHANNEL)
 //              ------Demo 环境， 请勿修改------
-
-//                    https://gray-www.growingio.com
-//                    https://gray-gta.growingio.com
-//                    wss://gray-gta.growingio.com
-
-//                .setDataHost("https://gray-www.growingio.com")
-//                .setReportHost("https://gray-gta.growingio.com")
-//                .setTrackerHost("https://apifwd.growingio.com")
-//                .setGtaHost("https://gray-gta.growingio.com")
-//                .setWsHost("wss://gray-gta.growingio.com")
-
-//                .setDataHost(" http://k8s-qa-www.growingio.com")
-//                .setReportHost("http://k8s-qa-gta.growingio.com")
-//                .setTrackerHost("http://apifwd.growingio.com")
-//                .setGtaHost("http://k8s-qa-gta.growingio.com")
-//                .setWsHost(" wss://k8s-qa-gta.growingio.com")
-
-//                .setDataHost("https://demo1.growingio.com")
-//                .setReportHost("https://demo1gta.growingio.com")
-//                .setTrackerHost("https://apifwd.growingio.com")
-//                .setGtaHost("https://demo1gta.growingio.com")
-//                .setWsHost("wss://demo1gta.growingio.com")
+                .setDataHost("https://demo1.growingio.com")
+                .setReportHost("https://demo1gta.growingio.com")
+                .setTrackerHost("https://apifwd.growingio.com")
+                .setGtaHost("https://demo1gta.growingio.com")
+                .setWsHost("wss://demo1gta.growingio.com")
 //              ------Demo 环境， 请勿修改------
 //              DeepLink 直达商品详情页面，注意：自定义参数的接收与建立 DeepLink 唤醒链接时设置一致
                 .setDeeplinkCallback { params: MutableMap<String, String>, errorCode: Int ->

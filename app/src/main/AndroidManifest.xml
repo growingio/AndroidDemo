@@ -32,9 +32,7 @@
 			<!-- start- GrowingIO Url Scheme , 请粘贴整个 intent-filter 代码块， 一个 Activity下可以有多个 Intent filter， 不要手动合并 -->
 			<intent-filter>
 				<data android:scheme="growing.9b4f02dc593cf331"/>
-				
 				<action android:name="android.intent.action.VIEW"/>
-				​
 				<category android:name="android.intent.category.DEFAULT"/>
 				<category android:name="android.intent.category.BROWSABLE"/>
 			</intent-filter>
