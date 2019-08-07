@@ -41,3 +41,7 @@
 -keep class androidx.viewpager.widget.ViewPager$**{
 	*;
 }
+
+-keep class com.huawei.** {
+    *;
+}
