@@ -103,14 +103,9 @@ dependencies {
     implementation 'com.growingio.android:vds-android-agent:autotrack-2.8.0@aar'
 
     //GrowingIO 触达 SDK
-    implementation(name: 'gtouch-0.2.0', ext: 'aar')
-    implementation(name: 'core-0.2.0', ext: 'aar')
-    implementation(name: 'huawei-adapter-0.2.0', ext: 'aar')
-    implementation(name: 'meizu-adapter-0.2.0', ext: 'aar')
-    implementation(name: 'xiaomi-adapter-0.2.0', ext: 'aar')
-    implementation(name: 'gpush-hms-agent-0.2.1', ext: 'aar')
-    implementation(name: 'gpush-mipush-sdk-0.2.1', ext: 'aar')
-    implementation 'com.huawei.android.hms:push:2.6.3.301'
-    implementation 'com.meizu.flyme.internet:push-internal:3.8.1'
     implementation 'com.squareup.okhttp3:okhttp:3.12.1'
+    implementation 'com.growingio.android:gtouch:0.3.0'
+    implementation 'com.growingio.android.gpush:gpush-huawei-adapter:0.3.0'
+    implementation 'com.growingio.android.gpush:gpush-meizu-adapter:0.3.0'
+    implementation 'com.growingio.android.gpush:gpush-xiaomi-adapter:0.3.0'
 }
