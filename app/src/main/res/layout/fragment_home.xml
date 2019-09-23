@@ -15,11 +15,15 @@
 		<include
 				android:id="@+id/search"
 				layout="@layout/include_search"/>
-		
-		<android.support.v4.view.ViewPager
-				android:id="@+id/banner"
+
+		<com.growingio.android.sdk.gtouch.widget.banner.GTouchBanner
+				android:id="@+id/gtouch_banner"
 				android:layout_width="match_parent"
-				android:layout_height="260dp"/>
+				android:layout_height="197dp"
+				app:bannerKey="99299c5d32d6e14a"
+				app:errorReplaceDrawable="@mipmap/load_error"
+				app:indicatorGravity="bottom|right"
+				app:placeholderDrawable="@mipmap/loading" />
 		
 		
 		<LinearLayout

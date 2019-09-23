@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
 import android.support.v4.widget.NestedScrollView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,8 @@ import com.growingio.giodemo.profile.MyOrderActivity
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import org.json.JSONObject
 import java.lang.ref.WeakReference
+import com.growingio.android.sdk.gtouch.widget.banner.GTouchBanner
+import com.growingio.android.sdk.gtouch.widget.banner.listener.BannerStateChangedListener
 
 
 class HomeFragment : Fragment(), View.OnClickListener {
@@ -24,6 +27,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
     private val productKey = "product"
     private var listener: OnFragmentInteractionListener? = null
+
 
     // tab 页面之间跳转，通过 activity 通信
     override fun onAttach(context: Context) {
@@ -38,48 +42,54 @@ class HomeFragment : Fragment(), View.OnClickListener {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
-        var scrollTask = BannerScrollTask(view.banner)
-
-        //Banner 一般都为图片，没有 content ,可以调用 trackBanner 接口给 banner 增加描述，采集 content, 注意 content 顺序和图片一致
-        GrowingIO.trackBanner(view.banner, arrayOf(gioCup.name, gioShirt.name).toMutableList())
-        view.banner.adapter = MyPagerAdapter(activity as Context?, view.banner)
-        view.banner.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override fun onPageScrollStateChanged(p0: Int) {}
-
-            override fun onPageScrolled(p0: Int, p1: Float, p2: Int) {}
-
-            override fun onPageSelected(p0: Int) {
-
-                if (userVisibleHint && isResumed) {
-
-                    // start
-                    when (p0) {
-                        1 -> {
-                            if (!isViewSelfVisible(view.banner)) return
-                            GrowingIO.getInstance().track(
-                            "homePageGoodsImp", JSONObject()
-                                .put(GioProductId, gioCup.id)
-                                .put(GioAdPosition, "banner")
-                                .put(GioProductName, gioCup.name)
-                            )
-                        }
-                        2 -> {
-                            if (!isViewSelfVisible(view.banner)) return
-                            GrowingIO.getInstance().track(
-                                "homePageGoodsImp", JSONObject()
-                                    .put(GioProductId, gioShirt.id)
-                                    .put(GioAdPosition, "banner")
-                                    .put(GioProductName, gioShirt.name)
-                            )
-                        }
-                    }
-                } else {
-                    view.banner.removeCallbacks(scrollTask)
-                }
+        view.gtouch_banner.loadData(object: BannerStateChangedListener {
+            /**
+             * Banner数据加载成功
+             *
+             * @param banner Banner控件对象
+             */
+            override fun onLoadDataSuccess(banner:GTouchBanner) {
+                Log.e(TAG, "onLoadDataSuccess: ")
             }
-        })
 
-        scrollTask.run()
+
+            /**
+             * Banner数据加载失败
+             *
+             * @param banner Banner控件对象
+             * @param errorCode 错误码
+             * @param description 错误描述，有可能为null
+             */
+            override fun onLoadDataFailed( banner:GTouchBanner, errorCode:Int,  description:String) {
+                Log.e(TAG, "onLoadDataFailed: errorCode = " + errorCode + ", description = " + description);
+            }
+
+
+            /**
+             * Banner item被点击
+             *
+             * @param banner Banner控件对象
+             * @param position item所处位置
+             * @param targetUrl 需要跳转的路由url
+             * @return 返回为true，触达SDK不在处理跳转的路由url；返回为false，触达SDK会处理跳转内部界面和H5两种触达系统提供的路由
+             */
+            override fun onItemClick(banner:GTouchBanner, position:Int, targetUrl:String):Boolean{
+                Log.e(TAG, "onItemClick: position = " + position + ", targetUrl = " + targetUrl);
+                return false
+            }
+
+            /**
+             * 加载失败图片被点击
+             *
+             * @param banner Banner控件对象
+             */
+            override fun onErrorImageClick( banner:GTouchBanner) {
+                Log.e(TAG, "onErrorImageClick")
+            }
+        }
+        )
+
+
 
         view.search.setOnClickListener(this)
         view.limited1.setOnClickListener(this)
