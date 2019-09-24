@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import com.growingio.android.sdk.collection.GrowingIO
 import com.growingio.giodemo.*
 import kotlinx.android.synthetic.main.activity_submt_order.*
 import kotlinx.android.synthetic.main.include_page_title.*
@@ -40,6 +41,7 @@ class SubmtOrderActivity : AppCompatActivity() {
         rc_submit_order.layoutManager = LinearLayoutManager(this)
 
         submit_order.setOnClickListener {
+            GrowingIO.getInstance().setPeopleVariable("isUserSubmitOdrer", true)
             startActivity(
                 Intent(this, CounterActivity::class.java)
                     .putExtra("price", payPrice)
