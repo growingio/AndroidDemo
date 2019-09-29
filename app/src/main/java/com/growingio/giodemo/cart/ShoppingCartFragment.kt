@@ -1,5 +1,6 @@
 package com.growingio.giodemo.cart
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -14,12 +15,30 @@ import org.json.JSONObject
 
 class ShoppingCartFragment : Fragment() {
     private lateinit var adapter: MyGoodsAdapter
-    private var created = false
+    private var mIsAttach = false
+    private var mIsVisible = false
+    private var mIsCreated = false
+
+    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
+        super.setUserVisibleHint(isVisibleToUser)
+        if(userVisibleHint){
+            mIsVisible = true
+            lazyLoad()
+        }else{
+            mIsVisible = false
+        }
+    }
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        if (!mIsAttach) {
+            mIsAttach = true
+            lazyLoad()
+        }
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_shopping_cart, container, false)
-
-        created = true
 
         adapter = MyGoodsAdapter(activity!!, listProduct!!, null, null)
         view.rc_cart.adapter = adapter
@@ -43,19 +62,23 @@ class ShoppingCartFragment : Fragment() {
             }
 
         }
+
+        if (!mIsCreated) {
+            mIsCreated = true
+            lazyLoad()
+        }
         return view
     }
 
-    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
-        super.setUserVisibleHint(isVisibleToUser)
+    override fun onDetach() {
+        super.onDetach()
+        mIsAttach = false
+    }
 
-        if (isVisibleToUser && created) {
+    private fun lazyLoad() {
+        if (mIsVisible && mIsAttach && mIsCreated) {
             productInTheCart(context!!)
             adapter.notifyDataSetChanged()
         }
     }
-
-
 }
-
-
