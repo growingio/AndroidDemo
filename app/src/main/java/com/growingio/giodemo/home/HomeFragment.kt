@@ -25,6 +25,7 @@ import com.growingio.android.sdk.gtouch.widget.banner.listener.BannerStateChange
 class HomeFragment : Fragment(), View.OnClickListener {
     object HomeFragment
 
+    private lateinit var gtouch_banner: GTouchBanner
     private val productKey = "product"
     private var listener: OnFragmentInteractionListener? = null
 
@@ -39,10 +40,63 @@ class HomeFragment : Fragment(), View.OnClickListener {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        gtouch_banner.loadData(object :BannerStateChangedListener{
+            /**
+             * Banner数据加载成功
+             *
+             * @param banner Banner控件对象
+             */
+            override fun onLoadDataSuccess(banner:GTouchBanner) {
+                Log.e(TAG, "onLoadDataSuccess: ")
+            }
+
+
+            /**
+             * Banner数据加载失败
+             *
+             * @param banner Banner控件对象
+             * @param errorCode 错误码
+             * @param description 错误描述，有可能为null
+             */
+            override fun onLoadDataFailed( banner:GTouchBanner, errorCode:Int,  description:String) {
+                Log.e(TAG, "onLoadDataFailed: errorCode = " + errorCode + ", description = " + description);
+            }
+
+
+            /**
+             * Banner item被点击
+             *
+             * @param banner Banner控件对象
+             * @param position item所处位置
+             * @param targetUrl 需要跳转的路由url
+             * @return 返回为true，触达SDK不在处理跳转的路由url；返回为false，触达SDK会处理跳转内部界面和H5两种触达系统提供的路由
+             */
+            override fun onItemClick(banner:GTouchBanner, position:Int, targetUrl:String):Boolean{
+                Log.e(TAG, "onItemClick: position = " + position + ", targetUrl = " + targetUrl);
+                return false
+            }
+
+            /**
+             * 加载失败图片被点击
+             *
+             * @param banner Banner控件对象
+             */
+            override fun onErrorImageClick( banner:GTouchBanner) {
+                Log.e(TAG, "onErrorImageClick")
+            }
+        }
+        )
+
+
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
-        view.gtouch_banner.loadData(object: BannerStateChangedListener {
+        gtouch_banner = view.gtouch_banner
+        gtouch_banner.loadData(object: BannerStateChangedListener {
             /**
              * Banner数据加载成功
              *
