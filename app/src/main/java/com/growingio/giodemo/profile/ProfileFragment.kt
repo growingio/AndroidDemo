@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.growingio.android.sdk.collection.GrowingIO
 import com.growingio.giodemo.R
 import kotlinx.android.synthetic.main.fragment_profile.view.*
 import kotlinx.android.synthetic.main.item_profile.view.*
@@ -48,7 +49,9 @@ class MyProfileAdapter(context: Context) : RecyclerView.Adapter<MyViewHolder>() 
         holder.content.text = profileInfo[p1].content
         if (p1 == 2) {
             holder.arrow.visibility = View.VISIBLE
-            holder.root.setOnClickListener { context.startActivity(Intent(context, MyOrderActivity::class.java)) }
+            holder.root.setOnClickListener {
+                GrowingIO.getInstance().setPeopleVariable("isUserSubmitOdrer", true)
+                context.startActivity(Intent(context, MyOrderActivity::class.java)) }
         }
     }
 
