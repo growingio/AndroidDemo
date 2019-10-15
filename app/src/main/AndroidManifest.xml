@@ -37,7 +37,39 @@
 				<category android:name="android.intent.category.BROWSABLE"/>
 			</intent-filter>
 			<!-- end- GrowingIO Url Scheme , 请粘贴整个 intent-filter 代码块， 一个 Activity下可以有多个 Intent filter， 不要手动合并 -->
-		
+
+
+			<!--GIO AppLink ,不建议修改或者合并-->
+			<intent-filter android:autoVerify="true">
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
+				<data
+					android:host="gio.ren"
+					android:pathPattern="/PQ2r6aud.*"
+					android:scheme="https" />
+			</intent-filter>
+
+			<intent-filter android:autoVerify="true">
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
+				<data
+					android:host="gio.ren"
+					android:pathPattern="/PQ2r6a.*id.*"
+					android:scheme="https" />
+			</intent-filter>
+
+			<intent-filter android:autoVerify="true">
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
+				<data
+					android:host="gio.ren"
+					android:pathPattern="/PQ2r6a.*td.*"
+					android:scheme="https" />
+			</intent-filter>
+			<!--GIO AppLink , 不建议修改或者合并-->
 		</activity>
 		<activity android:name=".SearchProductActivity"/>
 		<activity android:name=".category.CommentsActivity"/>
