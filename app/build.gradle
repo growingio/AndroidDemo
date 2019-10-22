@@ -60,7 +60,7 @@ android {
             buildConfigField "String", "CHANNEL", "\"GitHub\""
         }
 
-        onLine {
+        onLine {g
             dimension "channel"
             buildConfigField "String", "CHANNEL", "\"官网\""
         }
@@ -104,8 +104,8 @@ dependencies {
 
     //GrowingIO 触达 SDK
     implementation 'com.squareup.okhttp3:okhttp:3.12.1'
-    implementation 'com.growingio.android:gtouch:0.4.0'
-    implementation 'com.growingio.android.gpush:gpush-huawei-adapter:0.4.0'
-    implementation 'com.growingio.android.gpush:gpush-meizu-adapter:0.4.0'
-    implementation 'com.growingio.android.gpush:gpush-xiaomi-adapter:0.4.0'
+    implementation 'com.growingio.android:gtouch:0.4.1'
+    implementation 'com.growingio.android.gpush:gpush-huawei-adapter:0.4.1'
+    implementation 'com.growingio.android.gpush:gpush-meizu-adapter:0.4.1'
+    implementation 'com.growingio.android.gpush:gpush-xiaomi-adapter:0.4.1'
 }
