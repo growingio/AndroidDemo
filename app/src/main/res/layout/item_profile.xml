@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="71dp"
-                android:id="@+id/root">
-	
-	<TextView
-			android:id="@+id/tv_title"
-			android:text="title"
-			android:layout_marginLeft="30dp"
-			style="@style/TextStyleTitle"
-			android:layout_centerVertical="true"/>
-	
-	<TextView
-			android:id="@+id/tv_content"
-			style="@style/TextStyleTitle"
-			android:textColor="#9b9b9b"
-			android:text="content"
-			android:layout_marginRight="48dp"
-			android:layout_alignParentRight="true"
-			android:layout_centerVertical="true"/>
-	
-	<ImageView
-			android:id="@+id/img_arrow_right"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:visibility="gone"
-			android:src="@drawable/arrow_black_right"
-			android:layout_centerVertical="true"
-			android:layout_alignParentRight="true"
-			android:layout_marginRight="30dp"/>
-	
-	<View
-			android:layout_width="match_parent"
-			android:layout_height="1dp"
-			android:background="#eee"
-			android:layout_alignParentBottom="true"/>
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="71dp">
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/TextStyleTitle"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="30dp"
+        android:text="title" />
+
+    <TextView
+        android:id="@+id/tv_content"
+        style="@style/TextStyleTitle"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="48dp"
+        android:text="content"
+        android:textColor="#9b9b9b" />
+
+    <ImageView
+        android:id="@+id/img_arrow_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="48dp"
+        android:src="@drawable/arrow_black_right"
+        android:visibility="gone" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:background="#eee" />
 </RelativeLayout>
