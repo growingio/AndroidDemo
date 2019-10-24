@@ -13,8 +13,10 @@ class SubmtOrderActivity : AppCompatActivity() {
     private var productObj: Product? = null
     private var orderFee = 0
     private var payPrice = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_submt_order)
 
         back.setOnClickListener { finish() }
@@ -41,7 +43,7 @@ class SubmtOrderActivity : AppCompatActivity() {
         rc_submit_order.layoutManager = LinearLayoutManager(this)
 
         submit_order.setOnClickListener {
-            GrowingIO.getInstance().setPeopleVariable("isUserSubmitOdrer", true)
+
             startActivity(
                 Intent(this, CounterActivity::class.java)
                     .putExtra("price", payPrice)

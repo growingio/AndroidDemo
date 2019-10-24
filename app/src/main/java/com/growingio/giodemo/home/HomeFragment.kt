@@ -28,6 +28,8 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private lateinit var gtouch_banner: GTouchBanner
     private val productKey = "product"
     private var listener: OnFragmentInteractionListener? = null
+    private var count = 0
+    private lateinit var mSpHelper: SpHelper
 
 
     // tab 页面之间跳转，通过 activity 通信
@@ -42,6 +44,8 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
     override fun onResume() {
         super.onResume()
+        mSpHelper = SpHelper(context)
+
         gtouch_banner.loadData(object :BannerStateChangedListener{
             /**
              * Banner数据加载成功
@@ -94,7 +98,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
-
+        mSpHelper = SpHelper(context)
         gtouch_banner = view.gtouch_banner
         gtouch_banner.loadData(object: BannerStateChangedListener {
             /**
@@ -179,6 +183,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
+        mSpHelper = SpHelper(context)
         when (v!!.id) {
             R.id.search -> startActivity(Intent(activity, SearchProductActivity::class.java))
             R.id.limited1 -> startActivity(
@@ -203,7 +208,11 @@ class HomeFragment : Fragment(), View.OnClickListener {
             )
             R.id.category1, R.id.category2 -> listener!!.onFragmentInteraction(1)
             R.id.category3 -> listener!!.onFragmentInteraction(2)
-            R.id.category4 -> startActivity(Intent(activity, MyOrderActivity::class.java).putExtra("indicator", 1))
+            R.id.category4 -> {
+                count += 1
+                mSpHelper.saveImgOpenCnt(count)
+                GrowingIO.getInstance().setPeopleVariable("isUserSubmitOdrer",mSpHelper.getImgOpenCnt())
+                startActivity(Intent(activity, MyOrderActivity::class.java).putExtra("indicator", 1))}
 
         }
     }

@@ -117,6 +117,7 @@ class ProductDetailActivity : AppCompatActivity(), View.OnClickListener {
                 shareSuccessDialog!!.dismiss()
             }
             R.id.btn_add_to_cart -> {
+                GrowingIO.getInstance().setPeopleVariable("isUserSubmitOdrer", "true")
                 GrowingIO.getInstance().track(
                     "addToCart",
                     JSONObject()

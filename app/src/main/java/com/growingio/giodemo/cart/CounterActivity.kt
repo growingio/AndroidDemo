@@ -26,6 +26,7 @@ class CounterActivity : AppCompatActivity() {
         tv_pay_bill.text = String.format("￥ $bill")
 
         submit_order.setOnClickListener {
+            GrowingIO.getInstance().setPeopleVariable("isUserSubmitOdrer", "true")
             GrowingIO.getInstance().track(
                 "payOrder",
                 JSONObject()

@@ -58,7 +58,7 @@ class MyProfileAdapter(context: Context) : RecyclerView.Adapter<MyViewHolder>() 
         if (position == 2) {
             holder.arrow.visibility = View.VISIBLE
             holder.root.setOnClickListener {
-                GrowingIO.getInstance().setPeopleVariable("isUserSubmitOdrer", true)
+                GrowingIO.getInstance().setPeopleVariable("isUserSubmitOdrer", "true")
                 context.startActivity(Intent(context, MyOrderActivity::class.java))
             }
         }
