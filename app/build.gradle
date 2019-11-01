@@ -39,6 +39,13 @@ android {
 
                 GPUSH_MEIZU_APP_ID  : "121348",
                 GPUSH_MEIZU_APP_KEY : "7bf587c9769441a9b70a951805d247d2",
+
+                GPUSH_OPPO_APP_ID : "30169084",
+                GPUSH_OPPO_APP_KEY : "d5b8de18e1b34de9950e003321355ae4",
+                GPUSH_OPPO_APP_SECRET : "0e6cdaea2cee49c48bc449472674a71c",
+
+                GPUSH_VIVO_APP_KEY : "d04a505a-acee-42ac-8663-df7f71038ab3",
+                GPUSH_VIVO_APP_ID : "16033",
         ]
 
     }
@@ -108,4 +115,8 @@ dependencies {
     implementation 'com.growingio.android.gpush:gpush-huawei-adapter:1.0.0'
     implementation 'com.growingio.android.gpush:gpush-meizu-adapter:1.0.0'
     implementation 'com.growingio.android.gpush:gpush-xiaomi-adapter:1.0.0'
+    implementation(name: 'gpush-oppo-sdk-1.0.0', ext:'aar')
+    implementation(name: 'gpush-oppo-adapter-1.0.0', ext:'aar')
+    implementation(name: 'gpush-vivo-sdk-1.0.0', ext:'aar')
+    implementation(name: 'gpush-vivo-adapter-1.0.0', ext:'aar')
 }
