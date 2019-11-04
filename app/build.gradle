@@ -115,8 +115,6 @@ dependencies {
     implementation 'com.growingio.android.gpush:gpush-huawei-adapter:1.0.0'
     implementation 'com.growingio.android.gpush:gpush-meizu-adapter:1.0.0'
     implementation 'com.growingio.android.gpush:gpush-xiaomi-adapter:1.0.0'
-    implementation(name: 'gpush-oppo-sdk-1.0.0', ext:'aar')
-    implementation(name: 'gpush-oppo-adapter-1.0.0', ext:'aar')
-    implementation(name: 'gpush-vivo-sdk-1.0.0', ext:'aar')
-    implementation(name: 'gpush-vivo-adapter-1.0.0', ext:'aar')
+    implementation 'com.growingio.android.gpush:gpush-oppo-adapter:1.0.0'
+    implementation 'com.growingio.android.gpush:gpush-vivo-adapter:1.0.0'
 }
