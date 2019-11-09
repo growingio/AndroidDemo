@@ -3,14 +3,13 @@ package com.growingio.giodemo
 import android.app.Application
 import android.content.Intent
 import android.util.Log
-import android.widget.Toast
+import com.bun.miitmdid.core.JLibrary
 import com.growingio.android.sdk.collection.Configuration
 import com.growingio.android.sdk.collection.GrowingIO
 import com.growingio.android.sdk.deeplink.DeeplinkCallback
 import com.growingio.android.sdk.gtouch.GrowingTouch
 import com.growingio.android.sdk.gtouch.config.GTouchConfig
 import com.growingio.android.sdk.gtouch.listener.EventPopupListener
-import com.growingio.android.sdk.utils.LogUtil
 
 /**
  * classDesc: Application , 初始化 GrowingIO SDK
@@ -24,6 +23,7 @@ class GIOApplication : Application() {
         super.onCreate()
 
         val context = this
+        JLibrary.InitEntry(this)
 
         GrowingIO.startWithConfiguration(
             this, Configuration()
