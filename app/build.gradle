@@ -112,10 +112,10 @@ dependencies {
 
     //GrowingIO 触达 SDK
     implementation 'com.squareup.okhttp3:okhttp:3.12.1'
-    implementation 'com.growingio.android:gtouch:1.0.0'
-    implementation 'com.growingio.android.gpush:gpush-huawei-adapter:1.0.0'
-    implementation 'com.growingio.android.gpush:gpush-meizu-adapter:1.0.0'
-    implementation 'com.growingio.android.gpush:gpush-xiaomi-adapter:1.0.0'
-    implementation 'com.growingio.android.gpush:gpush-oppo-adapter:1.0.0'
-    implementation 'com.growingio.android.gpush:gpush-vivo-adapter:1.0.0'
+    implementation 'com.growingio.android:gtouch:' + GTouch_SDK_VERSION
+    implementation 'com.growingio.android.gpush:gpush-huawei-adapter:' + GTouch_SDK_VERSION
+    implementation 'com.growingio.android.gpush:gpush-meizu-adapter:' + GTouch_SDK_VERSION
+    implementation 'com.growingio.android.gpush:gpush-xiaomi-adapter:' + GTouch_SDK_VERSION
+    implementation 'com.growingio.android.gpush:gpush-oppo-adapter:' + GTouch_SDK_VERSION
+    implementation 'com.growingio.android.gpush:gpush-vivo-adapter:' + GTouch_SDK_VERSION
 }
