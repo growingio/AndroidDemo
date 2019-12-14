@@ -1,5 +1,6 @@
 package com.growingio.giodemo.profile
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -32,13 +33,14 @@ class ProfileFragment : Fragment() {
 
 class MyProfileAdapter(context: Context) : RecyclerView.Adapter<MyViewHolder>() {
     private val context = context
-    private val profileInfo: List<ProfileInfo> = arrayListOf(
+    private val profileInfo = arrayListOf(
         ProfileInfo("积分", "5799"),
         ProfileInfo("会员等级", "金牌"),
-        ProfileInfo("我的订单", null),
+        ProfileInfo("我的订单", activity = MyOrderActivity::class.java),
         ProfileInfo("红包", "￥ 120"),
         ProfileInfo("地址", "北京 望京 宝能中心B座"),
-        ProfileInfo("获取调试信息", null)
+        ProfileInfo("获取调试信息", activity = GetDebugInfoActivity::class.java),
+        ProfileInfo("校验AppLink状态", activity = ApplinkStatusActivity::class.java)
     )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -52,22 +54,21 @@ class MyProfileAdapter(context: Context) : RecyclerView.Adapter<MyViewHolder>() 
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.title.text = profileInfo[position].title
-        holder.content.text = profileInfo[position].content
-        // 我的订单
-        if (position == 2) {
-            holder.arrow.visibility = View.VISIBLE
+        val info = profileInfo[position]
+        holder.title.text = info.title
+        holder.content.text = info.content
+        holder.arrow.visibility = if (info.content == null) View.VISIBLE else View.GONE
+
+        if (info.activity != null){
             holder.root.setOnClickListener {
-                GrowingIO.getInstance().setPeopleVariable("isUserSubmitOdrer", "true")
-                context.startActivity(Intent(context, MyOrderActivity::class.java))
+                if (info.activity == MyOrderActivity::class.java){
+                    // 我的订单
+                    GrowingIO.getInstance().setPeopleVariable("isUserSubmitOdrer", "true")
+                }
+                context.startActivity(Intent(context, info.activity))
             }
-        }
-        //获取调试信息
-        if (position == profileInfo.size - 1) {
-            holder.arrow.visibility = View.VISIBLE
-            holder.root.setOnClickListener {
-                context.startActivity(Intent(context, GetDebugInfoActivity::class.java))
-            }
+        }else{
+            holder.root.setOnClickListener(null)
         }
     }
 
@@ -81,4 +82,4 @@ class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
 }
 
-data class ProfileInfo(val title: String, val content: String?)
+data class ProfileInfo(val title: String, val content: String? = null, val activity: Class<out Activity>? = null)

@@ -85,6 +85,7 @@
         <activity android:name=".profile.MyOrderActivity" />
         <activity android:name=".cart.PaySuccessActivity" />
         <activity android:name=".profile.GetDebugInfoActivity" />
+        <activity android:name=".profile.ApplinkStatusActivity"/>
     </application>
 
 </manifest>

@@ -11,10 +11,9 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.2'
+        classpath 'com.android.tools.build:gradle:3.5.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-
-        classpath 'com.growingio.android:vds-gradle-plugin:autotrack-2.8.5'
+        classpath "com.growingio.android:vds-gradle-plugin:$GROWINGIO_SDK_VERSION"
     }
 }
 
