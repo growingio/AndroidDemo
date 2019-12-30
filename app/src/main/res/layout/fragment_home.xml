@@ -20,10 +20,10 @@
 				android:id="@+id/gtouch_banner"
 				android:layout_width="match_parent"
 				android:layout_height="197dp"
-				app:bannerKey="99299c5d32d6e14a"
-				app:errorReplaceDrawable="@mipmap/load_error"
-				app:indicatorGravity="bottom|right"
-				app:placeholderDrawable="@mipmap/loading" />
+				app:gtouchBannerKey="99299c5d32d6e14a"
+				app:gtouchErrorReplaceDrawable="@mipmap/load_error"
+				app:gtouchIndicatorGravity="bottom|right"
+				app:gtouchPlaceholderDrawable="@mipmap/loading" />
 		
 		
 		<LinearLayout
