@@ -1,0 +1,7 @@
+,id,key,name,description,isSystem,projectId,createdAt,updatedAt,creator,updater,attribution
+0,JoOWVWoY,CreateAt,触达注册日期,,False,z98jGyZP,1576817483000,1576817483000,吕雨强,吕雨强,final
+1,q9AVnVRW,male,性别,,False,z98jGyZP,1571838797000,1571838797000,黄日超,黄日超,mostRecent
+2,qPk2jBRw,gio_push_package,推送包名,,False,z98jGyZP,1570517824000,1570517824000,zhanghao,zhanghao,mostRecent
+3,QReMz2Rq,isUserSubmitOdrer,用户是否点击过「我的订单」,用户是否提交订单,False,z98jGyZP,1569307254000,1569748440000,黄日超,黄日超,mostRecent
+4,a9BDvOPn,vipStatus,会员状态,,False,z98jGyZP,1563962386000,1563962386000,江鸥,江鸥,mostRecent
+5,39le7dR2,IfUserBuy_ppl,用户是否购买,,False,z98jGyZP,1559294410000,1559294410000,倪顺超,倪顺超,final
