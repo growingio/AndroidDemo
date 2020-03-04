@@ -88,6 +88,12 @@ android {
 
 repositories {
     mavenLocal()
+    google()
+    jcenter()
+    // 华为仓库
+    maven { url 'http://developer.huawei.com/repo/' }
+    // 个推仓库
+    maven { url "http://mvn.gt.igexin.com/nexus/content/repositories/releases/" }
     flatDir {
         dirs 'libs'   // aar目录
     }
