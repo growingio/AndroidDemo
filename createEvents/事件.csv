@@ -1,0 +1,21 @@
+,id,key,name,type,isSystem,projectId,createdAt,updatedAt,creator,updater
+0,rRErY8PL,gio_push_channel,触达推送通道,String,True,z98jGyZP,1582628873000,1582628873000,系统,系统
+1,xogAKERm,gio_push_device_brand,触达设备品牌,String,True,z98jGyZP,1582628873000,1582628873000,系统,系统
+2,3oLNAyRW,gio_push_message_name,触达推送名称,String,True,z98jGyZP,1560910833000,1573649352000,系统,项阳
+3,nP2ZGLPm,isFirstOrder,是否首次下单,String,False,z98jGyZP,1571896046000,1571896046000,黄日超,黄日超
+4,noq8xxPk,time,停留时长,Int,False,z98jGyZP,1571281702000,1571281702000,江鸥,江鸥
+5,nRb8pdo3,paymentMethod_var,支付方式,String,False,z98jGyZP,1550822373000,1567753005000,王颖,江鸥
+6,4PKEqp9E,item_title,文字内容,String,False,z98jGyZP,1562248507000,1562248507000,gilian,gilian
+7,bR7GjzRG,item_index,所在位置,String,False,z98jGyZP,1562247991000,1562247991000,gilian,gilian
+8,AovnNwoz,goods_name,推荐商品名称,String,False,z98jGyZP,1562246289000,1562246289000,gilian,gilian
+9,xogWjNom,goodsName_var,商品名称,String,False,z98jGyZP,1559294410000,1559294410000,倪顺超,倪顺超
+10,QReYVnRq,in_app_message_name,弹窗名称,String,True,z98jGyZP,1558958332000,1558958332000,系统,黄日超
+11,nPNLvD9W,buyQuantity_var,购买数量,Int,False,z98jGyZP,1550822373000,1550822373000,王颖,王颖
+12,a9BwxORn,orderAmount,订单金额,Double,False,z98jGyZP,1550822373000,1550822373000,王颖,王颖
+13,4PYngMoM,orderId_var,订单ID,String,False,z98jGyZP,1550822373000,1550822373000,王颖,王颖
+14,QReW6joq,payAmount_var,支付金额,Double,False,z98jGyZP,1550822373000,1550822373000,王颖,王颖
+15,woVn2do2,sharechannel,分享渠道,String,False,z98jGyZP,1550822373000,1550822373000,王颖,王颖
+16,noqVWv9k,floor_var,流量位,String,False,z98jGyZP,1550822372000,1550822372000,王颖,王颖
+17,xRxNjXo5,productName_var,商品名称 (1),String,False,z98jGyZP,1550822372000,1550822372000,王颖,王颖
+18,a9amer9B,searchWord_var,搜索词,String,False,z98jGyZP,1550822372000,1550822372000,王颖,王颖
+19,xogn7BPm,productId_var,商品ID,String,False,z98jGyZP,1550822220000,1550822220000,王颖,王颖
