@@ -35,7 +35,7 @@ android {
                 GPUSH_XIAOMI_APP_ID : "2882303761518008990",
                 GPUSH_XIAOMI_APP_KEY: "5161800834990",
 
-                GPUSH_HUAWEI_APP_ID : "100867057",
+                GPUSH_HUAWEI_APP_ID : "101808059",
 
                 GPUSH_MEIZU_APP_ID  : "121348",
                 GPUSH_MEIZU_APP_KEY : "7bf587c9769441a9b70a951805d247d2",
