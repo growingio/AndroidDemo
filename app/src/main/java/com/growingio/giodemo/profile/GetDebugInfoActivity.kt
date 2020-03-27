@@ -30,7 +30,7 @@ class GetDebugInfoActivity : AppCompatActivity() {
             if (PermissionUtil.checkReadPhoneStatePermission()) {
                 val tm = getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
                 imei = tm.deviceId
-                androidId = Settings.System.getString(
+                androidId = Settings    .System.getString(
                     context.contentResolver,
                     Settings.System.ANDROID_ID
                 )

@@ -75,6 +75,17 @@
 				style="@style/Base.Widget.AppCompat.Button.Borderless"
 				android:background="@drawable/bg_orange_button"
 				android:textSize="14sp"/>
+		<Button
+				android:id="@+id/clear_all"
+				android:layout_width="80dp"
+				android:layout_height="40dp"
+				android:layout_marginLeft="8dp"
+				android:text="清缓存"
+				android:textColor="#fff"
+				android:enabled="false"
+				style="@style/Base.Widget.AppCompat.Button.Borderless"
+				android:background="@drawable/bg_orange_button"
+				android:textSize="14sp"/>
 	</LinearLayout>
 
 </RelativeLayout>

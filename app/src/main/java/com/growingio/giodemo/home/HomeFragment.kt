@@ -21,11 +21,14 @@ import java.lang.ref.WeakReference
 import com.growingio.android.sdk.gtouch.widget.banner.GTouchBanner
 import com.growingio.android.sdk.gtouch.widget.banner.listener.BannerStateChangedListener
 
+const val TAG:String = "常置资源位："
+const val TAG2:String = "灵活资源位："
 
 class HomeFragment : Fragment(), View.OnClickListener {
     object HomeFragment
 
-    private lateinit var gtouch_banner: GTouchBanner
+    private lateinit var gtouchBanner: GTouchBanner
+    private lateinit var gtouchIsOftenBanner: GTouchBanner
     private val productKey = "product"
     private var listener: OnFragmentInteractionListener? = null
     private var count = 0
@@ -46,7 +49,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         super.onResume()
         mSpHelper = SpHelper(context)
 
-        gtouch_banner.loadData(object :BannerStateChangedListener{
+        gtouchBanner.loadData(object :BannerStateChangedListener{
             /**
              * Banner数据加载成功
              *
@@ -90,17 +93,61 @@ class HomeFragment : Fragment(), View.OnClickListener {
             override fun onErrorImageClick( banner:GTouchBanner) {
                 Log.e(TAG, "onErrorImageClick")
             }
-        }
-        )
+        })
 
+        gtouchIsOftenBanner.loadData(object :BannerStateChangedListener{
+            /**
+             * Banner数据加载成功
+             *
+             * @param banner Banner控件对象
+             */
+            override fun onLoadDataSuccess(banner:GTouchBanner) {
+                Log.e(TAG2, "onLoadDataSuccess: ")
+            }
+
+
+            /**
+             * Banner数据加载失败
+             *
+             * @param banner Banner控件对象
+             * @param errorCode 错误码
+             * @param description 错误描述，有可能为null
+             */
+            override fun onLoadDataFailed( banner:GTouchBanner, errorCode:Int,  description:String) {
+                Log.e(TAG2, "onLoadDataFailed: errorCode = " + errorCode + ", description = " + description);
+            }
+
+
+            /**
+             * Banner item被点击
+             *
+             * @param banner Banner控件对象
+             * @param position item所处位置
+             * @param targetUrl 需要跳转的路由url
+             * @return 返回为true，触达SDK不在处理跳转的路由url；返回为false，触达SDK会处理跳转内部界面和H5两种触达系统提供的路由
+             */
+            override fun onItemClick(banner:GTouchBanner, position:Int, targetUrl:String):Boolean{
+                Log.e(TAG2, "onItemClick: position = " + position + ", targetUrl = " + targetUrl);
+                return false
+            }
+
+            /**
+             * 加载失败图片被点击
+             *
+             * @param banner Banner控件对象
+             */
+            override fun onErrorImageClick( banner:GTouchBanner) {
+                Log.e(TAG2, "onErrorImageClick")
+            }
+        })
 
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         mSpHelper = SpHelper(context)
-        gtouch_banner = view.gtouch_banner
-        gtouch_banner.loadData(object: BannerStateChangedListener {
+        gtouchBanner = view.gtouch_banner
+        gtouchBanner.loadData(object: BannerStateChangedListener {
             /**
              * Banner数据加载成功
              *
@@ -147,7 +194,53 @@ class HomeFragment : Fragment(), View.OnClickListener {
         }
         )
 
+        gtouchIsOftenBanner = view.gtouch_banner_isOften
+        gtouchIsOftenBanner.loadData(object: BannerStateChangedListener {
+            /**
+             * Banner数据加载成功
+             *
+             * @param banner Banner控件对象
+             */
+            override fun onLoadDataSuccess(banner:GTouchBanner) {
+                Log.e(TAG2, "onLoadDataSuccess: ${banner.bannerKey}")
+            }
 
+
+            /**
+             * Banner数据加载失败
+             *
+             * @param banner Banner控件对象
+             * @param errorCode 错误码
+             * @param description 错误描述，有可能为null
+             */
+            override fun onLoadDataFailed( banner:GTouchBanner, errorCode:Int,  description:String) {
+                Log.e(TAG2, "onLoadDataFailed: errorCode = " + errorCode + ", description = " + description);
+            }
+
+
+            /**
+             * Banner item被点击
+             *
+             * @param banner Banner控件对象
+             * @param position item所处位置
+             * @param targetUrl 需要跳转的路由url
+             * @return 返回为true，触达SDK不在处理跳转的路由url；返回为false，触达SDK会处理跳转内部界面和H5两种触达系统提供的路由
+             */
+            override fun onItemClick(banner:GTouchBanner, position:Int, targetUrl:String):Boolean{
+                Log.e(TAG2, "onItemClick: position = " + position + ", targetUrl = " + targetUrl);
+                return false
+            }
+
+            /**
+             * 加载失败图片被点击
+             *
+             * @param banner Banner控件对象
+             */
+            override fun onErrorImageClick( banner:GTouchBanner) {
+                Log.e(TAG2, "onErrorImageClick")
+            }
+        }
+        )
 
         view.search.setOnClickListener(this)
         view.limited1.setOnClickListener(this)
