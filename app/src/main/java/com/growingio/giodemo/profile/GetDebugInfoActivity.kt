@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.include_page_title.*
 
 
 class GetDebugInfoActivity : AppCompatActivity() {
-    private var imei: String = ""
+    private var imei: String? = ""
     private var androidId: String = ""
     private var context: Context = this
     private var timer = object : CountDownTimer(60000, 1000) {
