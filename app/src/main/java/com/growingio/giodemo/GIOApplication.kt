@@ -31,6 +31,7 @@ class GIOApplication : Application() {
                 .setTestMode(BuildConfig.DEBUG)
                 .setDebugMode(BuildConfig.DEBUG)
                 .setChannel(BuildConfig.CHANNEL)
+                .setUploadExceptionEnable(false)
 //              ------Demo 环境， 请勿修改------
                 .setDataHost("https://demo1.growingio.com")
                 .setReportHost("https://demo1gta.growingio.com")
@@ -72,6 +73,7 @@ class GIOApplication : Application() {
             this, GTouchConfig()
                 .setDebugEnable(true)
                 .setEventPopupEnable(true)
+                .setUploadExceptionEnable(false)
                 .setEventPopupListener(object : EventPopupListener {
                     override fun onLoadFailed(
                         eventId: String?,
