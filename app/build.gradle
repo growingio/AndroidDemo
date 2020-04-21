@@ -121,7 +121,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.12.1'
     implementation 'com.growingio.android:gtouch:'+ GTouch_SDK_VERSION
     implementation 'com.growingio.android.widget:gtouch-banner:'+ GTouch_SDK_VERSION
-//    implementation 'com.growingio.android.gpush:gpush-huawei-adapter:'+ GTouch_SDK_VERSION
+    implementation 'com.growingio.android.gpush:gpush-huawei-adapter:'+ GTouch_SDK_VERSION
     implementation 'com.growingio.android.gpush:gpush-meizu-adapter:' + GTouch_SDK_VERSION
     implementation 'com.growingio.android.gpush:gpush-xiaomi-adapter:' + GTouch_SDK_VERSION
     implementation 'com.growingio.android.gpush:gpush-oppo-adapter:' + GTouch_SDK_VERSION
