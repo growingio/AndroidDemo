@@ -3,6 +3,7 @@ package com.growingio.giodemo
 import android.app.Application
 import android.content.Intent
 import android.util.Log
+import cn.jpush.android.api.JPushInterface
 import com.bun.miitmdid.core.JLibrary
 import com.growingio.android.sdk.collection.Configuration
 import com.growingio.android.sdk.collection.GrowingIO
@@ -25,8 +26,13 @@ class GIOApplication : Application() {
         val context = this
         JLibrary.InitEntry(this)
 
+        JPushInterface.setDebugMode(true)
+        JPushInterface.init(this)
+
+        Log.d("JPUSHss",JPushInterface.getRegistrationID(this))
         GrowingIO.startWithConfiguration(
             this, Configuration()
+                .setMutiprocess(true)
                 .trackAllFragments()
                 .setTestMode(BuildConfig.DEBUG)
                 .setDebugMode(BuildConfig.DEBUG)
@@ -38,6 +44,7 @@ class GIOApplication : Application() {
                 .setTrackerHost("https://apifwd.growingio.com")
                 .setGtaHost("https://demo1gta.growingio.com")
                 .setWsHost("wss://demo1gta.growingio.com")
+                .enablePushTrack()
 //              ------Demo 环境， 请勿修改------
 //              - 广告监测短链： https://gio.ren/PQ2r6aaidoMo ，自定义参数：{"param":"GIO 马克杯","jumpTo":"productDetail"}
                 .setDeeplinkCallback(object : DeeplinkCallback {

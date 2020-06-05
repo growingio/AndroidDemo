@@ -1,26 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.growingio.giodemo">
+        xmlns:tools="http://schemas.android.com/tools"
+        package="com.growingio.giodemo">
 
-    <!-- To access Google+ APIs: -->
+    <permission
+            android:name="com.growingio.giodemp.permission.JPUSH_MESSAGE"
+            android:protectionLevel="signature" /> <!-- Required -->
+    <uses-permission android:name="您应用的包名.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
     <uses-permission android:name="android.permission.INTERNET" />
-
-    <!-- 非危险权限，不需要运行时请求，Manifest文件中添加即可 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- Optional. Required for location feature -->
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!-- 用于开启 debug 版本的应用在 6.0 系统上的层叠窗口权限 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.VIBRATE" /> <!-- To access Google+ APIs: -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 非危险权限，不需要运行时请求，Manifest文件中添加即可 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
-        android:name=".GIOApplication"
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:networkSecurityConfig="@xml/network_security_config"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning">
+            android:name=".GIOApplication"
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:networkSecurityConfig="@xml/network_security_config"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme"
+            tools:ignore="GoogleAppIndexingWarning">
+        <service
+                android:name=".MyJCommonService"
+                android:enabled="true"
+                android:exported="false"
+                android:process=":pushcore">
+                <intent-filter>
+                  <action android:name="cn.jiguang.user.service.action" />
+                </intent-filter>
+        </service>
+        <!-- Required SDK 核心功能 -->
+        <!-- 可配置 android:process 参数将 PushService 放在其他进程中 -->
+        <service
+                android:name="cn.jpush.android.service.PushService"
+                android:enabled="true"
+                android:exported="false">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTER" />
+                <action android:name="cn.jpush.android.intent.REPORT" />
+                <action android:name="cn.jpush.android.intent.PushService" />
+                <action android:name="cn.jpush.android.intent.PUSH_TIME" />
+            </intent-filter>
+        </service>
+        <service
+                android:name="cn.jpush.android.service.DaemonService"
+                android:enabled="true"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.DaemonService" />
+
+                <category android:name="com.growingio.goidemo" />
+            </intent-filter>
+        </service>
+
+        <provider
+                android:name="cn.jpush.android.service.DownloadProvider"
+                android:authorities="com.growingio.giodemo.DownloadProvider"
+                android:exported="true" /> <!-- Required SDK 核心功能 -->
+        <receiver
+                android:name="cn.jpush.android.service.PushReceiver"
+                android:enabled="true">
+            <intent-filter android:priority="1000">
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />
+
+                <category android:name="com.growingio.giodemo" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+            <!-- Optional -->
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+        <receiver
+                android:name=".JPushReceiver"
+                android:enabled="true"
+                android:exported="false">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.RECEIVE_MESSAGE" />
+
+                <category android:name="com.growingio.giodemo" />
+            </intent-filter>
+        </receiver> <!-- since 3.6.0 -->
+        <activity
+                android:name="cn.jpush.android.service.DActivity"
+                android:enabled="true"
+                android:exported="true"
+                android:taskAffinity="jpush.custom"
+                android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.DActivity" />
+
+                <category android:name="${applicationId}" />
+            </intent-filter>
+        </activity>
         <activity android:name=".ProductDetailActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -32,6 +129,7 @@
             <!-- start- GrowingIO Url Scheme , 请粘贴整个 intent-filter 代码块， 一个 Activity下可以有多个 Intent filter， 不要手动合并 -->
             <intent-filter>
                 <data android:scheme="growing.9b4f02dc593cf331" />
+
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
@@ -40,7 +138,7 @@
             <!-- end- GrowingIO Url Scheme , 请粘贴整个 intent-filter 代码块， 一个 Activity下可以有多个 Intent filter， 不要手动合并 -->
 
 
-            <!--GIO AppLink ,不建议修改或者合并-->
+            <!-- GIO AppLink ,不建议修改或者合并 -->
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
 
@@ -48,11 +146,10 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="gio.ren"
-                    android:pathPattern="/PQ2r6aud.*"
-                    android:scheme="https" />
+                        android:host="gio.ren"
+                        android:pathPattern="/PQ2r6aud.*"
+                        android:scheme="https" />
             </intent-filter>
-
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
 
@@ -60,11 +157,10 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="gio.ren"
-                    android:pathPattern="/PQ2r6a.*id.*"
-                    android:scheme="https" />
+                        android:host="gio.ren"
+                        android:pathPattern="/PQ2r6a.*id.*"
+                        android:scheme="https" />
             </intent-filter>
-
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
 
@@ -72,11 +168,11 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="gio.ren"
-                    android:pathPattern="/PQ2r6a.*td.*"
-                    android:scheme="https" />
+                        android:host="gio.ren"
+                        android:pathPattern="/PQ2r6a.*td.*"
+                        android:scheme="https" />
             </intent-filter>
-            <!--GIO AppLink , 不建议修改或者合并-->
+            <!-- GIO AppLink , 不建议修改或者合并 -->
         </activity>
         <activity android:name=".SearchProductActivity" />
         <activity android:name=".category.CommentsActivity" />
@@ -85,7 +181,7 @@
         <activity android:name=".profile.MyOrderActivity" />
         <activity android:name=".cart.PaySuccessActivity" />
         <activity android:name=".profile.GetDebugInfoActivity" />
-        <activity android:name=".profile.ApplinkStatusActivity"/>
+        <activity android:name=".profile.ApplinkStatusActivity" />
     </application>
 
 </manifest>

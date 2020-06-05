@@ -18,6 +18,8 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.growingio.giodemo"
+
+
         minSdkVersion 17
         targetSdkVersion 28
         versionCode 1
@@ -25,6 +27,11 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
 
+        ndk {
+            //选择要添加的对应 cpu 类型的 .so 库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
 
         resValue("string", "growingio_project_id", "97fd6815651f25fb")
         resValue("string", "growingio_url_scheme", "growing.9b4f02dc593cf331")
@@ -46,6 +53,10 @@ android {
 
                 GPUSH_VIVO_APP_KEY : "d04a505a-acee-42ac-8663-df7f71038ab3",
                 GPUSH_VIVO_APP_ID : "16033",
+
+                JPUSH_PKGNAME : applicationId,
+                JPUSH_APPKEY : "1a3eff4e8876ab2f8904c124",
+                JPUSH_CHANNEL : "developer-default",
         ]
 
     }
@@ -126,4 +137,7 @@ dependencies {
     implementation 'com.growingio.android.gpush:gpush-xiaomi-adapter:' + GTouch_SDK_VERSION
     implementation 'com.growingio.android.gpush:gpush-oppo-adapter:' + GTouch_SDK_VERSION
     implementation 'com.growingio.android.gpush:gpush-vivo-adapter:' + GTouch_SDK_VERSION
+
+    implementation 'cn.jiguang.sdk:jpush:3.6.0'
+    implementation 'cn.jiguang.sdk:jcore:2.3.4'
 }
