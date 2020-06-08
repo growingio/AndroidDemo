@@ -4,8 +4,8 @@ buildscript {
     ext.kotlin_version = '1.3.50'
     repositories {
         mavenLocal()
-        google()
         jcenter()
+        google()
         flatDir {
             dirs 'libs'
         }
@@ -19,9 +19,11 @@ buildscript {
 
 allprojects {
     repositories {
+
         mavenLocal()
-        google()
         jcenter()
+        google()
+
         // 华为仓库
         maven { url 'http://developer.huawei.com/repo/' }
     }
