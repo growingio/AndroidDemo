@@ -11,8 +11,9 @@ import android.support.v4.app.ActivityCompat
 import android.support.v7.app.AppCompatActivity
 import android.telephony.TelephonyManager
 import android.util.Log
-import android.view.View
 import android.widget.Toast
+import com.growingio.android.sdk.utils.OaidHelper
+import com.growingio.android.sdk.utils.OaidHelper1010
 import com.growingio.android.sdk.utils.PermissionUtil
 import com.growingio.giodemo.R
 import kotlinx.android.synthetic.main.activity_get_debug_info.*
@@ -22,6 +23,7 @@ import kotlinx.android.synthetic.main.include_page_title.*
 class GetDebugInfoActivity : AppCompatActivity() {
     private var imei: String? = ""
     private var androidId: String = ""
+    private var oaid: String? = ""
     private var context: Context = this
     private var timer = object : CountDownTimer(60000, 1000) {
 
@@ -34,8 +36,11 @@ class GetDebugInfoActivity : AppCompatActivity() {
                     context.contentResolver,
                     Settings.System.ANDROID_ID
                 )
+
+                oaid = OaidHelper().getOaid(context)
                 tv_imei.text = imei
                 tv_adroid.text = androidId
+                tv_oaid.text = oaid
                 cancel()
             } else {
                 if (ActivityCompat.shouldShowRequestPermissionRationale
