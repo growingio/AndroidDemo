@@ -78,7 +78,7 @@ class GetDebugInfoActivity : AppCompatActivity() {
 
         val cm: ClipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         copy.setOnClickListener {
-            cm.primaryClip = ClipData.newPlainText(null, "imei : $imei , Android ID : $androidId")
+            cm.setPrimaryClip(ClipData.newPlainText(null, "imei : $imei , Android ID : $androidId"))
             Toast.makeText(context,"复制成功！",Toast.LENGTH_SHORT).show()
         }
 
