@@ -15,15 +15,15 @@ android {
             storePassword '9ijnmko0'
         }
     }
-    compileSdkVersion 28
+    compileSdkVersion 29
     defaultConfig {
         applicationId "com.growingio.giodemo"
 
 
         minSdkVersion 17
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.6"
+        targetSdkVersion 29
+        versionCode 19
+        versionName "1.9"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
 
