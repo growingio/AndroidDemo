@@ -18,6 +18,7 @@ import com.growingio.android.sdk.utils.PermissionUtil
 import com.growingio.giodemo.R
 import kotlinx.android.synthetic.main.activity_get_debug_info.*
 import kotlinx.android.synthetic.main.include_page_title.*
+import java.lang.Exception
 
 
 class GetDebugInfoActivity : AppCompatActivity() {
@@ -31,7 +32,12 @@ class GetDebugInfoActivity : AppCompatActivity() {
             //在计时器中轮询支付结果：每秒查询一次支付结果
             if (PermissionUtil.checkReadPhoneStatePermission()) {
                 val tm = getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
-                imei = tm.deviceId
+                try{
+                    imei = tm.deviceId
+                }catch (e: Exception) {
+                    Log.e("GetDebugInfo", e.message, e)
+                }
+
                 androidId = Settings.System.getString(
                     context.contentResolver,
                     Settings.System.ANDROID_ID
