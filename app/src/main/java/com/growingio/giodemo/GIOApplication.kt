@@ -1,7 +1,7 @@
 package com.growingio.giodemo
 
-import android.app.Application
 import android.content.Intent
+import android.support.multidex.MultiDexApplication
 import android.util.Log
 import cn.jpush.android.api.JPushInterface
 import com.bun.miitmdid.core.JLibrary
@@ -10,6 +10,8 @@ import com.growingio.android.sdk.collection.GrowingIO
 import com.growingio.android.sdk.deeplink.DeeplinkCallback
 import com.growingio.android.sdk.gtouch.GrowingTouch
 import com.growingio.android.sdk.gtouch.config.GTouchConfig
+import com.growingio.android.sdk.gtouch.data.entity.PopupWindowEvent
+import com.growingio.android.sdk.gtouch.event.EventPopupDecisionAction
 import com.growingio.android.sdk.gtouch.listener.EventPopupListener
 
 /**
@@ -18,7 +20,7 @@ import com.growingio.android.sdk.gtouch.listener.EventPopupListener
 
 const val TAG: String = "GIOApplication"
 
-class GIOApplication : Application() {
+class GIOApplication : MultiDexApplication() {
 
     override fun onCreate() {
         super.onCreate()
@@ -29,7 +31,7 @@ class GIOApplication : Application() {
         JPushInterface.setDebugMode(true)
         JPushInterface.init(this)
 
-        Log.d("JPUSHss",JPushInterface.getRegistrationID(this))
+        Log.d("JPUSHss", JPushInterface.getRegistrationID(this))
         GrowingIO.startWithConfiguration(
             this, Configuration()
                 .setMutiprocess(true)
@@ -116,6 +118,13 @@ class GIOApplication : Application() {
 
                     override fun onTimeout(eventId: String?, eventType: String?) {
                         Log.e(TAG, "onTimeout: eventId = $eventId, eventType = $eventType")
+                    }
+
+                    override fun popupEventDecideShow(
+                        p0: PopupWindowEvent?,
+                        p1: EventPopupDecisionAction?
+                    ): Boolean {
+                        return false
                     }
 
                 })
