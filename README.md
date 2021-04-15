@@ -16,3 +16,5 @@ https://github.com/growingio/AndroidDemo/blob/shopping/createEvents/README.md
 [AppLink 帮助文档](https://docs.growingio.com/docs/configuration/project-configuration#pei-zhi-app-linksandroid)  
 [自定义参数获取文档](https://docs.growingio.com/docs/sdk-integration/android-sdk/android-sdk#deep-link-hui-tiao-can-shu-huo-qu) 
 
+### 4.最新APK
+为了获取最新的版本，请到[release页面](https://github.com/growingio/AndroidDemo/releases)下载最新的apk而不是扫码下载。
