@@ -41,11 +41,11 @@ class GIOApplication : MultiDexApplication() {
                 .setChannel(BuildConfig.CHANNEL)
                 .setUploadExceptionEnable(false)
 //              ------Demo 环境， 请勿修改------
-                .setDataHost("https://demo1.growingio.com")
-                .setReportHost("https://demo1gta.growingio.com")
-                .setTrackerHost("https://apifwd.growingio.com")
-                .setGtaHost("https://demo1gta.growingio.com")
-                .setWsHost("wss://demo1gta.growingio.com")
+//                .setDataHost("https://demo1.growingio.com")
+//                .setReportHost("https://demo1gta.growingio.com")
+//                .setTrackerHost("https://apifwd.growingio.com")
+//                .setGtaHost("https://demo1gta.growingio.com")
+//                .setWsHost("wss://demo1gta.growingio.com")
                 .enablePushTrack()
 //              ------Demo 环境， 请勿修改------
 //              - 广告监测短链： https://gio.ren/PQ2r6aaidoMo ，自定义参数：{"param":"GIO 马克杯","jumpTo":"productDetail"}
