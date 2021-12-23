@@ -13,6 +13,7 @@ import com.growingio.android.sdk.gtouch.config.GTouchConfig
 import com.growingio.android.sdk.gtouch.data.entity.PopupWindowEvent
 import com.growingio.android.sdk.gtouch.event.EventPopupDecisionAction
 import com.growingio.android.sdk.gtouch.listener.EventPopupListener
+import com.igexin.sdk.PushManager
 
 /**
  * classDesc: Application , 初始化 GrowingIO SDK
@@ -30,6 +31,8 @@ class GIOApplication : MultiDexApplication() {
 
         JPushInterface.setDebugMode(true)
         JPushInterface.init(this)
+
+        initSdk()
 
         Log.d("JPUSHss", JPushInterface.getRegistrationID(this))
         GrowingIO.startWithConfiguration(
@@ -134,4 +137,13 @@ class GIOApplication : MultiDexApplication() {
         GrowingIO.getInstance().setPeopleVariable("vipLevel", 1)
 
     }
+
+    private fun initSdk() {
+        Log.d("GetuiSdk", "initializing sdk...")
+        PushManager.getInstance().initialize(this)
+        if (BuildConfig.DEBUG) {
+            //切勿在 release 版本上开启调试日志
+        }
+    }
+
 }

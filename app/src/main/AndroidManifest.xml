@@ -4,8 +4,13 @@
         package="com.growingio.giodemo">
 
     <permission
-            android:name="com.growingio.giodemp.permission.JPUSH_MESSAGE"
+            android:name="com.growingio.giodemo.permission.JPUSH_MESSAGE"
             android:protectionLevel="signature" /> <!-- Required -->
+
+    <permission android:name="com.growingio.giodemo.permission.MIPUSH_RECEIVE"
+        android:protectionLevel="signatureOrSystem"
+        tools:replace="android:protectionLevel"/>
+
     <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" />
     <uses-permission android:name="您应用的包名.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
@@ -109,6 +114,21 @@
                 <category android:name="com.growingio.giodemo" />
             </intent-filter>
         </receiver> <!-- since 3.6.0 -->
+
+        <!-- 用户自定义服务继承自GTIntentService,作为SDK与APP桥梁服务,用来接收各种消息和命令回复-->
+        <service android:name="com.growingio.giodemo.GeTuiIntentService" >
+            <meta-data
+                android:name="GETUI_APPID"
+                android:value="rYO6fbmvR76C5TXaghH9M9" />
+        </service>
+
+        <!-- 用户自定义服务名 -->
+        <service
+            android:name="com.growingio.giodemo.GeTuiPushService"
+            android:exported="true"
+            android:label="PushService"
+            android:process=":pushservice" />
+
         <activity
                 android:name="cn.jpush.android.service.DActivity"
                 android:enabled="true"
