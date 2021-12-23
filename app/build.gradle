@@ -64,6 +64,27 @@ android {
                 JPUSH_PKGNAME : applicationId,
                 JPUSH_APPKEY : "1a3eff4e8876ab2f8904c124",
                 JPUSH_CHANNEL : "developer-default",
+
+                GETUI_APPID    : "rYO6fbmvR76C5TXaghH9M9",
+
+                GETUI_APP_ID    : "rYO6fbmvR76C5TXaghH9M9",
+                GETUI_APP_KEY    : "QXbCcK8N9r7bs1rt652QH",
+                GETUI_APP_SECRET    : "fyvQkPtXrO9Pmh1iTRYR33",
+
+                XIAOMI_APP_ID : "2882303761518333615",
+                XIAOMI_APP_KEY: "5281833332615",
+
+                HUAWEI_APP_ID : "101808059",
+
+                MEIZU_APP_ID  : "121348",
+                MEIZU_APP_KEY : "7bf587c9769441a9b70a951805d247d2",
+
+                OPPO_APP_ID : "30169084",
+                OPPO_APP_KEY : "d5b8de18e1b34de9950e003321355ae4",
+                OPPO_APP_SECRET : "0e6cdaea2cee49c48bc449472674a71c",
+
+                VIVO_APP_KEY : "d04a505a-acee-42ac-8663-df7f71038ab3",
+                VIVO_APP_ID : "16033",
         ]
 
     }
@@ -72,10 +93,19 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.DemoSign
+
+            //请勿在线上版本配置MASTERSECRET的值，避免泄漏
+
+            buildConfigField("String", "MASTERSECRET", "\"\"")
+            buildConfigField("String", "APPKEY", "\"QXbCcK8N9r7bs1rt652QH\"")
         }
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            buildConfigField("String", "APPKEY", "\"QXbCcK8N9r7bs1rt652QH\"")
+            //请勿在线上版本配置MASTERSECRET的值，避免泄漏
+            buildConfigField("String", "MASTERSECRET", "\"Wcpn08melhAsveVglujWh5\"")
         }
     }
     flavorDimensions "channel"
@@ -136,15 +166,41 @@ dependencies {
     //GrowingIO 无埋点 SDK
     implementation "com.growingio.android:vds-android-agent:$GROWINGIO_SDK_VERSION"
 
+    implementation 'com.getui:gtsdk:3.2.6.0'
+    implementation 'com.getui:gtc:3.1.6.0'
+
+    implementation 'com.huawei.hms:push:5.3.0.301'
+    implementation 'com.getui.opt:hwp:3.1.0'
+    implementation 'com.getui.opt:xmp:3.0.3'
+    implementation 'com.getui.opt:mzp:3.1.0'
+    implementation 'com.assist-v3:oppo:3.0.3'
+    implementation 'com.assist-v3:vivo:3.0.5'
+
+    implementation ('com.growingio.android.gpush:gpush-huawei-adapter:' + GTouch_SDK_VERSION) {
+        exclude(group: 'com.huawei.hms' , module: 'push')
+    }
+    implementation ('com.growingio.android.gpush:gpush-meizu-adapter:' + GTouch_SDK_VERSION) {
+        exclude(group: 'com.meizu.flyme.internet' , module: 'push-internal')
+    }
+    implementation ('com.growingio.android.gpush:gpush-xiaomi-adapter:' + GTouch_SDK_VERSION) {
+        exclude(group: 'com.growingio.android.gpush' , module: 'gpush-mipush-sdk')
+    }
+    implementation ('com.growingio.android.gpush:gpush-oppo-adapter:' + GTouch_SDK_VERSION) {
+        exclude(group: 'com.growingio.android.gpush' , module: 'gpush-oppo-sdk')
+    }
+    implementation ('com.growingio.android.gpush:gpush-vivo-adapter:' + GTouch_SDK_VERSION) {
+        exclude(group: 'com.growingio.android.gpush' , module: 'gpush-vivo-sdk')
+    }
+
     //GrowingIO 触达 SDK
     implementation 'com.squareup.okhttp3:okhttp:3.12.1'
     implementation 'com.growingio.android:gtouch:'+ GTouch_SDK_VERSION
     implementation 'com.growingio.android.widget:gtouch-banner:'+ GTouch_SDK_VERSION
-    implementation 'com.growingio.android.gpush:gpush-huawei-adapter:'+ GTouch_SDK_VERSION
-    implementation 'com.growingio.android.gpush:gpush-meizu-adapter:' + GTouch_SDK_VERSION
-    implementation 'com.growingio.android.gpush:gpush-xiaomi-adapter:' + GTouch_SDK_VERSION
-    implementation 'com.growingio.android.gpush:gpush-oppo-adapter:' + GTouch_SDK_VERSION
-    implementation 'com.growingio.android.gpush:gpush-vivo-adapter:' + GTouch_SDK_VERSION
+//    implementation 'com.growingio.android.gpush:gpush-huawei-adapter:'+ GTouch_SDK_VERSION
+//    implementation 'com.growingio.android.gpush:gpush-meizu-adapter:' + GTouch_SDK_VERSION
+//    implementation 'com.growingio.android.gpush:gpush-xiaomi-adapter:' + GTouch_SDK_VERSION
+//    implementation 'com.growingio.android.gpush:gpush-oppo-adapter:' + GTouch_SDK_VERSION
+//    implementation 'com.growingio.android.gpush:gpush-vivo-adapter:' + GTouch_SDK_VERSION
 
     implementation 'cn.jiguang.sdk:jpush:3.6.0'
     implementation 'cn.jiguang.sdk:jcore:2.3.4'
